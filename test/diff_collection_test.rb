@@ -10,7 +10,9 @@ module SubDiff
     def test_append
       size, value = @diff_collection.size, @diff_collection.to_s
       @diff_collection << Diff.new('four', '4')
-      assert_equal size + 1, @diff_collection.size
+      @diff_collection << Diff.new('', 'test')
+      @diff_collection << Diff.new('') # should skip this since it's empty
+      assert_equal size + 2, @diff_collection.size
       assert_not_equal value, @diff_collection.to_s
     end
 

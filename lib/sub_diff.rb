@@ -4,24 +4,34 @@ module SubDiff
   autoload :Version,        'sub_diff/version'
 
   def gsub_diff(*args, &block)
-    diff_collection, last_prefix = DiffCollection.new, ''
-    gsub(args.first) do |match|
-      suffix, prefix, replacement = Diff.new($'), Diff.new($`.sub(last_prefix, '')), Diff.new(match.sub(*args, &block), match)
-      diff_collection << prefix << replacement
-      diff_collection << suffix unless suffix.send(args.first.is_a?(Regexp) ? :match : :include?, args.first)
-      last_prefix = prefix + match
+    with_diff_collection do |diff_collection|
+      match_prefix, suffix_matcher = '', args.first.is_a?(Regexp) ? :match : :include?
+      gsub(args.first) do |match|
+        suffix, prefix, replacement = Diff.new($'), Diff.new($`.sub(match_prefix, '')), Diff.new(match.sub(*args, &block), match)
+        diff_collection << prefix << replacement
+        diff_collection << suffix unless suffix.send(suffix_matcher, args.first)
+        match_prefix << prefix + match
+      end
     end
-    diff_collection
   end
 
   def sub_diff(*args, &block)
-    diff_collection = DiffCollection.new
-    sub(args.first) do |match|
-      suffix, prefix, replacement = Diff.new($'), Diff.new($`), Diff.new(match.sub(*args, &block), match)
-      diff_collection << prefix << replacement << suffix
+    with_diff_collection do |diff_collection|
+      sub(args.first) do |match|
+        suffix, prefix, replacement = Diff.new($'), Diff.new($`), Diff.new(match.sub(*args, &block), match)
+        diff_collection << prefix << replacement << suffix
+      end
     end
-    diff_collection
   end
+
+  protected
+
+    def with_diff_collection
+      diff_collection = DiffCollection.new
+      yield diff_collection
+      diff_collection << Diff.new(self) if diff_collection.empty?
+      diff_collection
+    end
 end
 
 String.send(:include, SubDiff)

@@ -3,12 +3,15 @@ module SubDiff
     include Enumerable
 
     def initialize(diffs = [])
-      @diffs = diffs
+      @diffs = []
+      diffs.each { |diff| self << diff }
     end
 
     def <<(diff)
-      @diffs << diff
-      @to_s = nil
+      if diff.changed? || !diff.empty?
+        @diffs << diff
+        @to_s = nil
+      end
       self
     end
 
