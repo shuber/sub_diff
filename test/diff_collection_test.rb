@@ -26,6 +26,11 @@ module SubDiff
       assert_raises(NoMethodError) { @diff_collection.invalid_method }
     end
 
+    def test_respond_to_missing?
+      assert @diff_collection.respond_to?(:upcase)
+      assert !@diff_collection.respond_to?(:invalid_method)
+    end
+
     def test_size
       assert_equal @diffs.size, @diff_collection.size
     end

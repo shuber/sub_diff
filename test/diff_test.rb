@@ -30,6 +30,11 @@ module SubDiff
       assert_raises(NoMethodError) { @diff.invalid_method }
     end
 
+    def test_respond_to_missing?
+      assert @diff.respond_to?(:upcase)
+      assert !@diff.respond_to?(:invalid_method)
+    end
+
     def test_to_s
       assert_equal @diff.value, @diff.to_s
     end

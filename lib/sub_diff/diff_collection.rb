@@ -23,6 +23,10 @@ module SubDiff
       to_s.send(*args, &block)
     end
 
+    def respond_to_missing?(method, include_private)
+      to_s.respond_to?(method, include_private)
+    end
+
     def size
       @diffs.size
     end
