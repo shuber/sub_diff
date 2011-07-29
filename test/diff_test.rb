@@ -19,7 +19,7 @@ class DiffTest < Test::Unit::TestCase
     assert_equal @diff_without_value_was.value, @diff_without_value_was.value_was
   end
 
-  def test_changed
+  def test_changed?
     assert @diff.changed?
     assert !@diff_without_value_was.changed?
     assert !SubDiff::Diff.new('test', 'test').changed?
