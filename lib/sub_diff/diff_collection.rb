@@ -2,8 +2,8 @@ module SubDiff
   class DiffCollection
     include Enumerable
 
-    def initialize
-      @diffs = []
+    def initialize(diffs = [])
+      @diffs = diffs
     end
 
     def <<(diff)
@@ -18,6 +18,10 @@ module SubDiff
 
     def method_missing(*args, &block)
       to_s.send(*args, &block)
+    end
+
+    def size
+      @diffs.size
     end
 
     def to_s
