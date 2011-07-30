@@ -10,7 +10,18 @@ Allows you to see the exact changes made to strings from regular expression repl
 
 == Usage
 
-Coming soon...
+<tt>String#gsub_diff</tt> or <tt>String#sub_diff</tt> accept the same arguments as the standard <tt>gsub</tt> and <tt>sub</tt> methods, however the returned object is enumerable and allows you to iterate thru each replacement
+
+  replacement = 'this is a test'.gsub_diff(/(\S*is)/, 'x(\1)')
+  
+  puts replacement
+  # => x(this) x(is) a test
+  
+  replacement.each { |diff| puts [diff.changed?, diff.value_was.inspect, diff.value.inspect].join(' - ') }
+  # => true - "this" - "x(this)"
+  # => false - " " - " "
+  # => true - "is" - "x(is)"
+  # => false - " a test" - " a test"
 
 
 == Patches and pull requests
