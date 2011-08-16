@@ -9,7 +9,7 @@ module SubDiff
     #
     # Example
     #
-    #   Version.to_s # '1.0.2'
+    #   puts Version # '1.0.2'
     def self.to_s
       [MAJOR, MINOR, PATCH].join('.')
     end
