@@ -1,7 +1,6 @@
 = sub_diff
 
-Allows you to see the exact changes made to strings from regular expression replacements
-
+Allows you to apply regular expression replacements to strings while presenting the result in a "diff" like format
 
 == Installation
 

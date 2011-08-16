@@ -12,8 +12,8 @@ Gem::Specification.new do |s|
   s.date     = Date.today
   s.platform = Gem::Platform::RUBY
 
-  s.summary     = ''
-  s.description = ''
+  s.summary     = 'Allows you to apply regular expression replacements to strings while presenting the result in a "diff" like format'
+  s.description = 'Allows you to apply regular expression replacements to strings while presenting the result in a "diff" like format'
 
   s.author   = 'Sean Huber'
   s.email    = 'shuber@huberry.com'
