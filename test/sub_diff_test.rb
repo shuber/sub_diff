@@ -14,7 +14,7 @@ module SubDiff
 
     def test_gsub_diff_with_hash
       diff_collection = @string.gsub_diff(/(\S*is)/, 'is' => 'IS', 'this' => 'THIS')
-      assert_equal 'THIS IS a harder test', diff_collection.to_s
+      assert_equal 'THIS IS a simple test', diff_collection.to_s
       assert_equal 4, diff_collection.size
     rescue TypeError => error # Hash arguments only work in ruby 1.9+
       assert_equal "can't convert Hash into String", error.message

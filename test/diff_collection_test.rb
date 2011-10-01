@@ -22,7 +22,7 @@ module SubDiff
     end
 
     def test_method_missing
-      assert_equal @diffs.to_s.upcase, @diff_collection.upcase
+      assert_equal @diffs.join.upcase, @diff_collection.upcase
       assert_raises(NoMethodError) { @diff_collection.invalid_method }
     end
 
