@@ -1,4 +1,4 @@
-= sub_diff
+= sub_diff link:https://secure.travis-ci.org/shuber/sub_diff.png
 
 Allows you to apply regular expression replacements to strings while presenting the result in a "diff" like format
 
