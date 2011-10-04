@@ -1,6 +1,7 @@
-= sub_diff link:https://secure.travis-ci.org/shuber/sub_diff.png
+= sub_diff - {<img src="https://secure.travis-ci.org/shuber/sub_diff.png"/>}[http://travis-ci.org/shuber/sub_diff]
 
 Allows you to apply regular expression replacements to strings while presenting the result in a "diff" like format
+
 
 == Installation
 
