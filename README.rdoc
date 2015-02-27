@@ -15,11 +15,11 @@ Allows you to apply regular expression replacements to strings while presenting 
   example = 'this is a test'
   replaced = example.gsub_diff(/(\S*is)/, 'replaced(\1)')
 
-The `replaced` object behaves just like a `String`.
+The <tt>replaced</tt> object behaves just like a <tt>String</tt>.
   
   puts replaced #=> replaced(this) replaced(is) a test
 
-But when enumerating thru it, `Diff` objects are returned instead of characters.
+But when enumerating thru it, <tt>Diff</tt> objects are returned instead of characters.
   
   replaced.each do |diff|
     puts "    value: #{diff.value.inspect}"
@@ -43,7 +43,7 @@ But when enumerating thru it, `Diff` objects are returned instead of characters.
   #=> value_was: " a test"
   #=>  changed?: false
 
-Each `Diff` object also behaves like a `String` but includes the additional methods above.
+Each <tt>Diff</tt> object also behaves like a <tt>String</tt> but includes the additional methods above.
 
 
 = Testing
