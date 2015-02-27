@@ -3,6 +3,8 @@ require_relative 'diff_collection'
 
 module SubDiff
   class Differ
+    attr_reader :diffable, :collection
+
     def initialize(diffable)
       @diffable = diffable
       @collection = DiffCollection.new
@@ -19,8 +21,6 @@ module SubDiff
     end
 
     private
-
-    attr_reader :diffable, :collection
 
     def diff!(*args, &block)
     end
