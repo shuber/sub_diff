@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
 
   s.require_paths = ['lib']
 
-  s.files      = Dir['{bin,lib}/**/*'] + %w(Gemfile MIT-LICENSE README.rdoc)
+  s.files      = Dir['{bin,lib}/**/*'] + %w(Gemfile LICENSE README.rdoc)
   s.test_files = Dir['spec/**/*']
 
   s.add_development_dependency 'codeclimate-test-reporter'
