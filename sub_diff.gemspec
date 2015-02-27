@@ -1,28 +1,22 @@
-# -*- encoding: utf-8 -*-
-
-lib = File.expand_path('../lib/', __FILE__)
-$:.unshift lib unless $:.include?(lib)
-
-require 'sub_diff/version'
-require 'date'
+require File.expand_path('../lib/sub_diff/version', __FILE__)
 
 Gem::Specification.new do |s|
   s.name     = 'sub_diff'
   s.version  = SubDiff::Version
-  s.date     = Date.today
   s.platform = Gem::Platform::RUBY
 
   s.summary     = 'Apply regular expression replacements to strings while presenting the result in a "diff" like format'
   s.description = 'Allows you to apply regular expression replacements to strings while presenting the result in a "diff" like format'
 
   s.author   = 'Sean Huber'
-  s.email    = 'shuber@huberry.com'
-  s.homepage = 'http://github.com/shuber/sub_diff'
+  s.email    = 'github@shuber.io'
+  s.homepage = 'https://github.com/shuber/sub_diff'
+  s.license  = 'MIT'
 
   s.require_paths = ['lib']
 
   s.files      = Dir['{bin,lib}/**/*'] + %w(Gemfile MIT-LICENSE Rakefile README.rdoc)
   s.test_files = Dir['test/**/*']
 
-  s.add_dependency('respond_to_missing')
+  s.add_dependency 'respond_to_missing'
 end
