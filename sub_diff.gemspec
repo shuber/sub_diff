@@ -15,12 +15,9 @@ Gem::Specification.new do |s|
 
   s.require_paths = ['lib']
 
-  s.files      = Dir['{bin,lib}/**/*'] + %w(Gemfile MIT-LICENSE Rakefile README.rdoc)
-  s.test_files = Dir['test/**/*']
+  s.files      = Dir['{bin,lib}/**/*'] + %w(Gemfile MIT-LICENSE README.rdoc)
+  s.test_files = Dir['spec/**/*']
 
   s.add_development_dependency 'codeclimate-test-reporter'
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'rdoc', '>= 2.4.2'
   s.add_development_dependency 'rspec'
-  s.add_development_dependency 'test-unit'
 end

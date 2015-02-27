@@ -10,12 +10,7 @@ GEM
       simplecov (>= 0.7.1, < 1.0.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
-    json (1.8.2)
     multi_json (1.10.1)
-    power_assert (0.2.2)
-    rake (10.4.2)
-    rdoc (4.2.0)
-      json (~> 1.4)
     rspec (3.2.0)
       rspec-core (~> 3.2.0)
       rspec-expectations (~> 3.2.0)
@@ -34,16 +29,11 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.9.0)
     simplecov-html (0.9.0)
-    test-unit (3.0.9)
-      power_assert
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   codeclimate-test-reporter
-  rake
-  rdoc (>= 2.4.2)
   rspec
   sub_diff!
-  test-unit
