@@ -12,13 +12,17 @@ Allows you to apply regular expression replacements to strings while presenting 
 
 <tt>String#gsub_diff</tt> or <tt>String#sub_diff</tt> accept the same arguments as the standard <tt>gsub</tt> and <tt>sub</tt> methods, however the returned object is enumerable and allows you to iterate thru each replacement
 
-  replacement = 'this is a test'.gsub_diff(/(\S*is)/, 'x(\1)')
+  example = 'this is a test'
+  replaced = example.gsub_diff(/(\S*is)/, 'replaced(\1)')
   
-  puts replacement
-  # => x(this) x(is) a test
+  puts replaced
+  # => replaced(this) replaced(is) a test
   
-  replacement.each { |diff| puts [diff.changed?, diff.value_was.inspect, diff.value.inspect].join(' - ') }
-  # => true - "this" - "x(this)"
+  replaced.each do |diff|
+    puts [diff.changed?, diff.value_was.inspect, diff.value.inspect].join(' - ')
+  end
+
+  # => true - "this" - "replaced(this)"
   # => false - " " - " "
-  # => true - "is" - "x(is)"
+  # => true - "is" - "replaced(is)"
   # => false - " a test" - " a test"
