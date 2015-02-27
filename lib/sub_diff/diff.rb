@@ -1,4 +1,4 @@
-require "delegate"
+require 'delegate'
 
 module SubDiff
   class Diff < SimpleDelegator
@@ -14,6 +14,10 @@ module SubDiff
 
     def changed?
       value != value_was
+    end
+
+    def enumerable?
+      changed? || !empty?
     end
   end
 end

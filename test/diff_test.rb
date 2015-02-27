@@ -25,6 +25,12 @@ module SubDiff
       assert !Diff.new('test', 'test').changed?
     end
 
+    def test_enumerable?
+      assert @diff.enumerable?
+      assert @diff_without_value_was.enumerable?
+      assert !Diff.new('', '').enumerable?
+    end
+
     def test_to_s
       assert_equal @diff.value, @diff.to_s
     end
