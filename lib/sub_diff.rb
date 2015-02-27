@@ -1,5 +1,4 @@
-require 'sub_diff/diff'
-require 'sub_diff/diff_collection'
+require 'sub_diff/sub'
 require 'sub_diff/gsub'
 require 'sub_diff/version'
 
