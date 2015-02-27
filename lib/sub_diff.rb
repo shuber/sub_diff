@@ -26,12 +26,12 @@ module SubDiff
 
   private
 
-    def with_diff_collection
-      diff_collection = DiffCollection.new
-      yield diff_collection
-      diff_collection << Diff.new(self) if diff_collection.empty?
-      diff_collection
-    end
+  def with_diff_collection
+    diff_collection = DiffCollection.new
+    yield diff_collection
+    diff_collection << Diff.new(self) if diff_collection.empty?
+    diff_collection
+  end
 end
 
 String.send(:include, SubDiff)
