@@ -48,7 +48,7 @@ Each <tt>Diff</tt> object also behaves like a <tt>String</tt> but includes the a
 
 = Testing
 
-  bundle exec rake
+  bundle exec rspec
 
 
 == Contributing
