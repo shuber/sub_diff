@@ -9,7 +9,7 @@ module SubDiff
     def_delegators :diffs, :each, :size
 
     def initialize(diffs = [])
-      super to_s
+      super(to_s)
       diffs.each(&method(:<<))
       yield self if block_given?
     end
