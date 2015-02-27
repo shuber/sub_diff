@@ -1,8 +1,8 @@
-module SubDiff
-  autoload :Diff,           'sub_diff/diff'
-  autoload :DiffCollection, 'sub_diff/diff_collection'
-  autoload :Version,        'sub_diff/version'
+require 'sub_diff/diff'
+require 'sub_diff/diff_collection'
+require 'sub_diff/version'
 
+module SubDiff
   def gsub_diff(*args, &block)
     with_diff_collection do |diff_collection|
       match_prefix, suffix_matcher = '', args.first.is_a?(Regexp) ? :match : :include?
