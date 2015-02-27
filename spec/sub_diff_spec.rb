@@ -11,7 +11,7 @@ RSpec.describe SubDiff do
     it 'should delegate to Sub#diff' do
       expect(described_class::Sub).to receive(:new)
                                       .with(subject)
-                                      .and_return differ
+                                      .and_return(differ)
 
       expect(subject.sub_diff).to eq 'diffed'
     end
@@ -21,7 +21,7 @@ RSpec.describe SubDiff do
     it 'should delegate to Gsub#diff' do
       expect(described_class::Gsub).to receive(:new)
                                        .with(subject)
-                                       .and_return differ
+                                       .and_return(differ)
 
       expect(subject.gsub_diff).to eq 'diffed'
     end
