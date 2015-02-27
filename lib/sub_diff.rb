@@ -1,5 +1,3 @@
-require 'respond_to_missing'
-
 module SubDiff
   autoload :Diff,           'sub_diff/diff'
   autoload :DiffCollection, 'sub_diff/diff_collection'

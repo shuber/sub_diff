@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     sub_diff (0.0.0)
-      respond_to_missing
 
 GEM
   remote: https://www.rubygems.org/
@@ -16,7 +15,6 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
-    respond_to_missing (0.0.1)
     simplecov (0.9.2)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
