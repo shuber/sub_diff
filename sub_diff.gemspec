@@ -5,8 +5,8 @@ Gem::Specification.new do |s|
   s.version  = SubDiff::Version
   s.platform = Gem::Platform::RUBY
 
-  s.summary     = 'Apply regular expression replacements to strings while presenting the result in a "diff" like format'
-  s.description = 'Allows you to apply regular expression replacements to strings while presenting the result in a "diff" like format'
+  s.summary     = 'An enumerable collection of "diff" objects for your <tt>String#sub</tt> and <tt>String#gsub</tt> replacements'
+  s.description = 'An enumerable collection of "diff" objects for your <tt>String#sub</tt> and <tt>String#gsub</tt> replacements'
 
   s.author   = 'Sean Huber'
   s.email    = 'github@shuber.io'
