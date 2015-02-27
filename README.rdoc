@@ -15,14 +15,26 @@ Allows you to apply regular expression replacements to strings while presenting 
   example = 'this is a test'
   replaced = example.gsub_diff(/(\S*is)/, 'replaced(\1)')
   
-  puts replaced
-  # => replaced(this) replaced(is) a test
+  puts replaced #=> replaced(this) replaced(is) a test
   
   replaced.each do |diff|
-    puts [diff.changed?, diff.value_was.inspect, diff.value.inspect].join(' - ')
+    puts "    value: #{diff.value.inspect}"
+    puts "value_was: #{diff.value_was.inspect}"
+    puts " changed?: #{diff.changed?}"
   end
 
-  # => true - "this" - "replaced(this)"
-  # => false - " " - " "
-  # => true - "is" - "replaced(is)"
-  # => false - " a test" - " a test"
+  #=>     value: "this"
+  #=> value_was: "replaced(this)"
+  #=>  changed?: true
+
+  #=>     value: " "
+  #=> value_was: " "
+  #=>  changed?: false
+
+  #=>     value: "is"
+  #=> value_was: "replaced(is)"
+  #=>  changed?: true
+
+  #=>     value: " a test"
+  #=> value_was: " a test"
+  #=>  changed?: false
