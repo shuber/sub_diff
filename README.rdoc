@@ -10,12 +10,16 @@ Allows you to apply regular expression replacements to strings while presenting 
 
 == Usage
 
-<tt>String#gsub_diff</tt> or <tt>String#sub_diff</tt> accept the same arguments as the standard <tt>gsub</tt> and <tt>sub</tt> methods, however the returned object is enumerable and allows you to iterate thru each replacement
+<tt>String#gsub_diff</tt> or <tt>String#sub_diff</tt> accept the same arguments as the standard <tt>gsub</tt> and <tt>sub</tt> methods, however the returned object is enumerable and allows you to iterate thru each replacement.
 
   example = 'this is a test'
   replaced = example.gsub_diff(/(\S*is)/, 'replaced(\1)')
+
+The `replaced` object behaves just like a `String`.
   
   puts replaced #=> replaced(this) replaced(is) a test
+
+But when enumerating thru it, `Diff` objects are returned instead of characters.
   
   replaced.each do |diff|
     puts "    value: #{diff.value.inspect}"
@@ -38,6 +42,8 @@ Allows you to apply regular expression replacements to strings while presenting 
   #=>     value: " a test"
   #=> value_was: " a test"
   #=>  changed?: false
+
+Each `Diff` object also behaves like a `String` but includes the additional methods above.
 
 
 = Testing
