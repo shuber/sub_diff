@@ -6,3 +6,6 @@ rvm:
   - rbx-2
   - ree
   - ruby-head
+addons:
+  code_climate:
+    repo_token: 6f133fcc28caad1e1099287a1ac4ee0ac4fb428cdd9c5cb9424be1110ef8704a
