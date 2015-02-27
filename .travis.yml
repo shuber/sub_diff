@@ -1,10 +1,6 @@
 rvm:
   - 1.9.2
   - 2.0.0
-  - jruby-19mode
-  - jruby-head
-  - rbx-2
-  - ree
   - ruby-head
 addons:
   code_climate:
