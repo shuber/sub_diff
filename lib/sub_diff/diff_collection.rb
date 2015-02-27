@@ -14,6 +14,10 @@ module SubDiff
       else
         diffs.each { |diff| self << diff }
       end
+
+      if block_given?
+        yield self
+      end
     end
 
     def <<(diff)
