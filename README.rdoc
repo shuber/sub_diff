@@ -1,4 +1,4 @@
-= sub_diff - {<img src="https://secure.travis-ci.org/shuber/sub_diff.png"/>}[http://travis-ci.org/shuber/sub_diff]
+= sub_diff - {<img src="https://secure.travis-ci.org/shuber/sub_diff.png"/>}[http://travis-ci.org/shuber/sub_diff] {<img src="https://codeclimate.com/github/shuber/sub_diff/badges/gpa.svg" />}[https://codeclimate.com/github/shuber/sub_diff] {<img src="https://codeclimate.com/github/shuber/sub_diff/badges/coverage.svg" />}[https://codeclimate.com/github/shuber/sub_diff]
 
 Allows you to apply regular expression replacements to strings while presenting the result in a "diff" like format
 
