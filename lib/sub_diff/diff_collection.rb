@@ -9,15 +9,9 @@ module SubDiff
     def_delegators :diffs, :each, :size
 
     def initialize(diffs = [])
-      if diffs.empty?
-        super to_s
-      else
-        diffs.each { |diff| self << diff }
-      end
-
-      if block_given?
-        yield self
-      end
+      super to_s
+      diffs.each(&method(:<<))
+      yield self if block_given?
     end
 
     def <<(diff)
