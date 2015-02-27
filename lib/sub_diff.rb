@@ -24,7 +24,7 @@ module SubDiff
     end
   end
 
-  protected
+  private
 
     def with_diff_collection
       diff_collection = DiffCollection.new
