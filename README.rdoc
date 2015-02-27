@@ -19,7 +19,7 @@ The <tt>replaced</tt> object behaves just like a <tt>String</tt>.
   
   puts replaced #=> replaced(this) replaced(is) a test
 
-But when enumerating thru it, <tt>Diff</tt> objects are returned instead of characters.
+But returns <tt>Diff</tt> objects instead of characters when enumerating.
   
   replaced.each do |diff|
     puts "    value: #{diff.value.inspect}"
