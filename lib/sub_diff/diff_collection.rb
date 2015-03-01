@@ -3,8 +3,8 @@ require 'forwardable'
 
 module SubDiff
   class DiffCollection < SimpleDelegator
-    include Enumerable
     extend Forwardable
+    include Enumerable
 
     def_delegators :diffs, :each, :size
 
