@@ -15,8 +15,8 @@ module SubDiff
       value != value_was
     end
 
-    def enumerable?
-      changed? || !empty?
+    def empty?
+      super && !changed?
     end
   end
 end

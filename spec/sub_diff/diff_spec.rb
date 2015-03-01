@@ -29,18 +29,17 @@ RSpec.describe SubDiff::Diff do
     end
   end
 
-  describe '#enumerable?' do
-    it 'should return true if the diff was changed' do
-      expect(diff).to be_enumerable
+  describe '#empty?' do
+    it 'should return false if the diff was changed' do
+      expect(diff).not_to be_empty
     end
 
-    it 'should return true if the diff value is not empty' do
-      expect(diff).to receive(:changed?).and_return false
-      expect(diff).to be_enumerable
+    it 'should return false if the diff value is not empty' do
+      expect(diff_without_value_was).not_to be_empty
     end
 
-    it 'should return false if the diff was not changed and is empty' do
-      expect(diff_with_empty_values).not_to be_enumerable
+    it 'should return true if the diff was not changed and is empty' do
+      expect(diff_with_empty_values).to be_empty
     end
   end
 

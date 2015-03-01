@@ -15,7 +15,7 @@ module SubDiff
     end
 
     def <<(diff)
-      if diff.enumerable?
+      unless diff.empty?
         diffs << diff
         __setobj__(to_s)
       end
