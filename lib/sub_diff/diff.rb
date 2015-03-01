@@ -5,7 +5,6 @@ module SubDiff
     attr_reader :value_was
 
     alias_method :value, :__getobj__
-    alias_method :to_s, :value
 
     def initialize(value, value_was = nil)
       @value_was = value_was || value

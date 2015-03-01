@@ -44,12 +44,6 @@ RSpec.describe SubDiff::Diff do
     end
   end
 
-  describe '#to_s' do
-    it 'should return the diff value' do
-      expect(diff.to_s).to eq value
-    end
-  end
-
   describe '#value' do
     it 'should return the diff value' do
       expect(diff.value).to eq value
