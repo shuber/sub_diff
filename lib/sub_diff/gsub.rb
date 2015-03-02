@@ -20,8 +20,7 @@ module SubDiff
     end
 
     def suffix_matcher
-      case args.first
-      when Regexp
+      if args.first.is_a?(Regexp)
         :match
       else
         :include?
