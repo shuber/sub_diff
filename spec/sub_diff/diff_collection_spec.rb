@@ -12,7 +12,10 @@ RSpec.describe SubDiff::DiffCollection do
   end
 
   def diff(value)
-    double('diff', changed?: false, empty?: value.empty?, to_s: value)
+    double 'diff', changed?: false,
+                   empty?: value.empty?,
+                   to_s: value,
+                   to_str: value
   end
 
   describe '#changed?' do
