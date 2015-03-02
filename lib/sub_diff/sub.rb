@@ -34,7 +34,7 @@ module SubDiff
 
     def diff!
       diffable.send(diff_method, args.first) do |match|
-        cache(prefix: $`, suffix: $', match: match) do
+        cache(match: match, prefix: $`, suffix: $') do
           replacement = match.sub(*args, &block)
           cache(replacement: replacement) { yield }
         end
