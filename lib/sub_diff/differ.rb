@@ -13,7 +13,7 @@ module SubDiff
         @block = block
         diff!
         @args = nil
-        @block = block
+        @block = nil
       end
     end
 
