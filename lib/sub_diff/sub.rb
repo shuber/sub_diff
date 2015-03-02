@@ -38,12 +38,12 @@ module SubDiff
       end
     end
 
-    def replacement
-      match.sub(*args, &block)
-    end
-
     def process
       diffs.push(prefix).push(replacement, match).push(suffix)
+    end
+
+    def replacement
+      match.sub(*args, &block)
     end
   end
 end
