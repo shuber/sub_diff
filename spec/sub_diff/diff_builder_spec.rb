@@ -30,6 +30,11 @@ RSpec.describe SubDiff::DiffBuilder do
       expect(subject.collection.to_a.last.to_s).to eq 'test'
     end
 
+    it 'should ignore nil diffs' do
+      action = -> { subject.push(nil) }
+      expect(action).not_to change(subject, :collection)
+    end
+
     it 'should return the builder instance' do
       result = subject.push('test')
       expect(result).to eq subject

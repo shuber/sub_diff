@@ -1,5 +1,4 @@
 require 'sub_diff/sub'
-require 'sub_diff/gsub'
 require 'sub_diff/version'
 
 module SubDiff
