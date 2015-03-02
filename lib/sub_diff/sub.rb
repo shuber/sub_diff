@@ -34,12 +34,10 @@ module SubDiff
 
     def diff!
       diffable.send(diff_method, args.first) do |match|
-        cache(match: match, prefix: $`, suffix: $') do
-          cache(replacement: replacement) { yield }
-        end
+        cache(match: match, prefix: $`, suffix: $') { yield }
       end
     end
-  
+
     def replacement
       match.sub(*args, &block)
     end
