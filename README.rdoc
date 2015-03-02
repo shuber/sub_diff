@@ -12,8 +12,7 @@ An enumerable collection of "diff" objects for your {<tt>String#sub</tt>}[http:/
 
 This gem introduces two new methods to <tt>String</tt>, <tt>sub_diff</tt> and <tt>gsub_diff</tt>, which accept the same arguments as their <tt>sub</tt> and <tt>gsub</tt> counterparts.
 
-  example = 'this is a test'
-  replaced = example.gsub_diff(/(\S*is)/, 'replaced(\1)')
+  replaced = 'this is a test'.gsub_diff(/(\S*is)/, 'replaced(\1)')
 
 The <tt>replaced</tt> object behaves just like a <tt>String</tt>.
   
