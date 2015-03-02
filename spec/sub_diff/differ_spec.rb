@@ -13,7 +13,7 @@ RSpec.describe SubDiff::Differ do
 
     it 'should call diff! with specified args' do
       args = double("args")
-      expect(subject).to receive(:diff!).with(args)
+      expect(subject).to receive :diff!
       subject.diff(args)
     end
   end

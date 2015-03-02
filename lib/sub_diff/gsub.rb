@@ -4,7 +4,7 @@ module SubDiff
   class Gsub < Differ
     private
 
-    def diff!(*args, &block)
+    def diff!
       match_prefix = ''
       suffix_matcher = args.first.is_a?(Regexp) ? :match : :include?
 

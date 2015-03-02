@@ -9,13 +9,17 @@ module SubDiff
 
     def diff(*args, &block)
       build_diff_collection do
-        diff!(*args, &block)
+        @args = args
+        @block = block
+        diff!
+        @args = nil
+        @block = block
       end
     end
 
     protected
 
-    attr_reader :diffable, :diffs
+    attr_reader :args, :block, :diffable, :diffs
 
     private
 
@@ -25,7 +29,7 @@ module SubDiff
       diffs.collection.tap { @diffs = nil }
     end
 
-    def diff!(*args, &block)
+    def diff!
     end
 
     def diff_with(method, args, block)
