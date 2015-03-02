@@ -31,16 +31,16 @@ For a closer look at the changes, you can enumerate thru the returned replacemen
     puts " changed?: #{diff.changed?}"
   end
 
-  #=>     value: "this"
-  #=> value_was: "replaced(this)"
+  #=>     value: "replaced(this)"
+  #=> value_was: "this"
   #=>  changed?: true
 
   #=>     value: " "
   #=> value_was: " "
   #=>  changed?: false
 
-  #=>     value: "is"
-  #=> value_was: "replaced(is)"
+  #=>     value: "replaced(is)"
+  #=> value_was: "is"
   #=>  changed?: true
 
   #=>     value: " a test"
