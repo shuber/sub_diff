@@ -6,11 +6,11 @@ module SubDiff
 
     def diff!(*args, &block)
       diffable.sub(args.first) do |match|
-        prefix = Diff.new($`)
-        suffix = Diff.new($')
-        replacement = Diff.new(match.sub(*args, &block), match)
+        prefix = $`
+        suffix = $'
+        replacement = [match.sub(*args, &block), match]
 
-        collection << prefix << replacement << suffix
+        diffs.push(prefix).push(*replacement).push(suffix)
       end
     end
   end

@@ -1,7 +1,7 @@
 require_relative '../../lib/sub_diff/gsub'
 
 RSpec.describe SubDiff::Gsub do
-  subject { described_class.new diffable }
+  subject { described_class.new(diffable) }
 
   let(:diffable) { 'this is a simple test' }
 

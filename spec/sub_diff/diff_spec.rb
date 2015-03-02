@@ -8,16 +8,6 @@ RSpec.describe SubDiff::Diff do
   let(:value)     { 'test' }
   let(:value_was) { 'testing' }
 
-  describe '#initialize' do
-    it 'should accept value_was' do
-      expect(diff.value_was).to eq value_was
-    end
-
-    it 'should set value_was to value if it is not specified' do
-      expect(diff_without_value_was.value_was).to eq value
-    end
-  end
-
   describe '#changed?' do
     it 'should return true if value does not match value_was' do
       expect(diff).to be_changed
@@ -46,6 +36,16 @@ RSpec.describe SubDiff::Diff do
   describe '#value' do
     it 'should return the diff value' do
       expect(diff.value).to eq value
+    end
+  end
+
+  describe '#value_was' do
+    it 'should accept value_was' do
+      expect(diff.value_was).to eq value_was
+    end
+
+    it 'should set value_was to value if it is not specified' do
+      expect(diff_without_value_was.value_was).to eq value
     end
   end
 end

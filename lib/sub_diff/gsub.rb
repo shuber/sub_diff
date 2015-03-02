@@ -9,15 +9,15 @@ module SubDiff
       suffix_matcher = args.first.is_a?(Regexp) ? :match : :include?
 
       diffable.gsub(args.first) do |match|
-        suffix = Diff.new($')
+        suffix = $'
         stripped_prefix = $`.sub(match_prefix, '')
-        prefix = Diff.new(stripped_prefix)
-        replacement = Diff.new(match.sub(*args, &block), match)
+        prefix = stripped_prefix
+        replacement = [match.sub(*args, &block), match]
 
-        collection << prefix << replacement
+        diffs.push(prefix).push(*replacement)
 
         unless suffix.send(suffix_matcher, args.first)
-          collection << suffix
+          diffs.push(suffix)
         end
 
         match_prefix << prefix << match

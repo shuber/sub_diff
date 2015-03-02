@@ -6,29 +6,17 @@ module SubDiff
     extend Forwardable
     include Enumerable
 
+    attr_reader :diffs
+
     def_delegators :diffs, :each, :size
 
-    def initialize(diffs = [])
-      super(to_s)
-      diffs.each(&method(:<<))
-      yield self if block_given?
+    def initialize(diffs)
+      @diffs = diffs.reject(&:empty?)
+      super(diffs.join)
     end
 
-    def <<(diff)
-      unless diff.empty?
-        diffs << diff
-        __setobj__(to_s)
-      end
-
-      self
-    end
-
-    def diffs
-      @diffs ||= []
-    end
-
-    def to_s
-      diffs.join
+    def changed?
+      diffs.any?(&:changed?)
     end
   end
 end

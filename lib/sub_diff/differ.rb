@@ -1,26 +1,28 @@
-require_relative 'diff'
-require_relative 'diff_collection'
+require_relative 'diff_builder'
 
 module SubDiff
   class Differ
-    attr_reader :diffable, :collection
-
     def initialize(diffable)
       @diffable = diffable
-      @collection = DiffCollection.new
     end
 
     def diff(*args, &block)
-      diff!(*args, &block)
-
-      if collection.empty?
-        collection << Diff.new(diffable)
+      build_diff_collection do
+        diff!(*args, &block)
       end
-
-      collection
     end
 
+    protected
+
+    attr_reader :diffable, :diffs
+
     private
+
+    def build_diff_collection
+      @diffs = DiffBuilder.new(diffable)
+      yield
+      diffs.collection.tap { @diffs = nil }
+    end
 
     def diff!(*args, &block)
     end

@@ -8,7 +8,7 @@ module SubDiff
 
     def initialize(value, value_was = nil)
       @value_was = value_was || value
-      super value
+      super(value)
     end
 
     def changed?

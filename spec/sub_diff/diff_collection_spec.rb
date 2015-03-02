@@ -1,34 +1,47 @@
 require_relative '../../lib/sub_diff/diff_collection'
 
 RSpec.describe SubDiff::DiffCollection do
-  before { diffs.each(&subject.method(:<<)) }
+  subject { described_class.new(diffs_with_empty) }
 
-  subject { described_class.new }
-
-  let(:diffs) do
-    [
-      SubDiff::Diff.new('one '),
-      SubDiff::Diff.new('two', '2'),
-      SubDiff::Diff.new(' three ')
-    ]
+  let(:diffs_with_empty) do
+    diffs.dup << diff('')
   end
 
-  it { is_expected.to be_an Enumerable }
-  it { is_expected.to delegate(:each).to(:diffs) }
-  it { is_expected.to delegate(:size).to(:diffs) }
+  let(:diffs) do
+    [diff('one '), diff('two'), diff(' three ')]
+  end
 
-  describe '#<<' do
-    it 'should skip empty diffs' do
-      size, value = subject.size, subject.to_s
+  def diff(value)
+    double('diff', changed?: false, empty?: value.empty?, to_s: value)
+  end
 
-      subject << SubDiff::Diff.new('four', '4')
-      subject << SubDiff::Diff.new('', 'test')
+  describe '#changed?' do
+    it 'should return true if any diffs have changed' do
+      expect(diffs.first).to receive(:changed?).and_return(true)
+      expect(subject).to be_changed
+    end
 
-      # This one should be skipped since it's empty
-      subject << SubDiff::Diff.new('')
+    it 'should return false if no diffs have changed' do
+      expect(subject).not_to be_changed
+    end
+  end
 
-      expect(subject.size).to eq(size + 2)
-      expect(subject.to_s).not_to eq value
+  describe '#diffs' do
+    it 'should exclude empty diffs' do
+      expect(subject.diffs).to eq diffs
+    end
+  end
+
+  describe '#each' do
+    it { is_expected.to be_an Enumerable }
+    it { is_expected.to delegate(:each).to(:diffs) }
+  end
+
+  describe '#size' do
+    it { is_expected.to delegate(:size).to(:diffs) }
+
+    it 'should not use the string size' do
+      expect(subject.size).not_to eq subject.to_s.size
     end
   end
 
