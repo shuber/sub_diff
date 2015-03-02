@@ -1,6 +1,6 @@
 = sub_diff - {<img src="https://secure.travis-ci.org/shuber/sub_diff.png"/>}[http://travis-ci.org/shuber/sub_diff] {<img src="https://codeclimate.com/github/shuber/sub_diff/badges/gpa.svg" />}[https://codeclimate.com/github/shuber/sub_diff] {<img src="https://codeclimate.com/github/shuber/sub_diff/badges/coverage.svg" />}[https://codeclimate.com/github/shuber/sub_diff]
 
-An enumerable collection of "diff" objects for your <tt>String#sub</tt> and <tt>String#gsub</tt> replacements
+An enumerable collection of "diff" objects for your {<tt>String#sub</tt>}[http://ruby-doc.org//core-2.2.0/String.html#method-i-sub] and {<tt>String#gsub</tt>}[http://ruby-doc.org//core-2.2.0/String.html#method-i-gsub] replacements
 
 
 == Installation
@@ -19,11 +19,11 @@ The <tt>replaced</tt> object behaves just like a <tt>String</tt>.
   
   puts replaced #=> replaced(this) replaced(is) a test
 
-But it also allows you to check if the replacement actually changed anything.
+It also allows you to check if the replacement actually changed anything.
 
   replaced.changed? #=> true
 
-For a closer look at the changes, you can enumerate thru the returned replacement object, yielding a <tt>Diff</tt> object for each iteration. Each <tt>Diff</tt> object also behaves like a <tt>String</tt> but includes a few additional methods.
+For a closer look at the changes, you can enumerate thru the returned replacement object, yielding a <tt>Diff</tt> object for each iteration. Each <tt>Diff</tt> also behaves like a <tt>String</tt> but includes a few additional methods.
   
   replaced.each do |diff|
     puts "    value: #{diff.value.inspect}"
