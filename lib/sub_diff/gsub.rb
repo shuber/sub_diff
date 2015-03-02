@@ -23,9 +23,7 @@ module SubDiff
     private
 
     def diff!
-      cache(last_prefix: '') do
-        super
-      end
+      cache(last_prefix: '') { super }
     end
 
     def process
