@@ -32,7 +32,7 @@ module SubDiff
     def diff!
     end
 
-    def diff_with(method, args, block)
+    def diff_with(method)
       diffable.send(method, args.first) do |match|
         prefix = $`
         suffix = $'

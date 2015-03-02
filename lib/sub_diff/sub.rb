@@ -5,7 +5,7 @@ module SubDiff
     private
 
     def diff!
-      diff_with(:sub, args, block) do |match|
+      diff_with(:sub) do |match|
         diffs
           .push(match.prefix)
           .push(match.replacement, match)

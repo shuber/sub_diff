@@ -5,19 +5,26 @@ module SubDiff
     private
 
     def diff!
-      match_prefix = ''
-      suffix_matcher = args.first.is_a?(Regexp) ? :match : :include?
+      current_prefix = ''
 
-      diff_with(:gsub, args, block) do |match|
-        prefix = match.prefix.sub(match_prefix, '')
-
+      diff_with(:gsub) do |match|
+        prefix = match.prefix.sub(current_prefix, '')
         diffs.push(prefix).push(match.replacement, match)
+        diffs.push(match.suffix) if suffix?(match)
+        current_prefix << prefix << match
+      end
+    end
 
-        unless match.suffix.send(suffix_matcher, args.first)
-          diffs.push(match.suffix)
-        end
+    def suffix?(match)
+      !match.suffix.send(suffix_matcher, args.first)
+    end
 
-        match_prefix << prefix << match
+    def suffix_matcher
+      case args.first
+      when Regexp
+        :match
+      else
+        :include?
       end
     end
   end
