@@ -22,7 +22,7 @@ It also allows you to check if the replacement actually changed anything.
 
   replaced.changed? #=> true
 
-For a closer look at the changes, you can enumerate thru each <tt>Diff</tt> object which also behaves like a <tt>String</tt> but includes a few additional methods: <tt>value</tt>, <tt>value_was</tt>, and <tt>changed?</tt>.
+For a closer look at the changes, simply enumerate thru the returned replacements. Each iteration yields a <tt>Diff</tt> object which also behaves like a <tt>String</tt> but includes a few additional methods: <tt>value</tt>, <tt>value_was</tt>, and <tt>changed?</tt>.
   
   replaced.each do |diff|
     puts "    value: #{diff.value.inspect}"
