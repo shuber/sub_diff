@@ -16,7 +16,7 @@ module SubDiff
     end
 
     def empty?
-      super && !changed?
+      value.empty? && !changed?
     end
   end
 end

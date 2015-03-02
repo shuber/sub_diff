@@ -1,4 +1,5 @@
 require_relative 'diff_builder'
+require_relative 'diff_match'
 
 module SubDiff
   class Differ
@@ -25,6 +26,17 @@ module SubDiff
     end
 
     def diff!(*args, &block)
+    end
+
+    def diff_with(method, args, block)
+      diffable.send(method, args.first) do |match|
+        prefix = $`
+        suffix = $'
+        replacement = match.sub(*args, &block)
+        diff_match = DiffMatch.new(match, replacement, prefix, suffix)
+
+        yield diff_match
+      end
     end
   end
 end

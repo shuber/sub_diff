@@ -8,16 +8,13 @@ module SubDiff
       match_prefix = ''
       suffix_matcher = args.first.is_a?(Regexp) ? :match : :include?
 
-      diffable.gsub(args.first) do |match|
-        suffix = $'
-        stripped_prefix = $`.sub(match_prefix, '')
-        prefix = stripped_prefix
-        replacement = [match.sub(*args, &block), match]
+      diff_with(:gsub, args, block) do |match|
+        prefix = match.prefix.sub(match_prefix, '')
 
-        diffs.push(prefix).push(*replacement)
+        diffs.push(prefix).push(match.replacement, match)
 
-        unless suffix.send(suffix_matcher, args.first)
-          diffs.push(suffix)
+        unless match.suffix.send(suffix_matcher, args.first)
+          diffs.push(match.suffix)
         end
 
         match_prefix << prefix << match

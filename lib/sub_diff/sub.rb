@@ -5,12 +5,11 @@ module SubDiff
     private
 
     def diff!(*args, &block)
-      diffable.sub(args.first) do |match|
-        prefix = $`
-        suffix = $'
-        replacement = [match.sub(*args, &block), match]
-
-        diffs.push(prefix).push(*replacement).push(suffix)
+      diff_with(:sub, args, block) do |match|
+        diffs
+          .push(match.prefix)
+          .push(match.replacement, match)
+          .push(match.suffix)
       end
     end
   end
