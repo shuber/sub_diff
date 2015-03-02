@@ -10,6 +10,16 @@ module SubDiff
       :gsub
     end
 
+    def prefix
+      super.sub(last_prefix, '')
+    end
+
+    def suffix
+      unless super.send(matcher, args.first)
+        super
+      end
+    end
+
     private
 
     def diff!
@@ -21,16 +31,6 @@ module SubDiff
     def process
       super
       last_prefix << prefix << match
-    end
-
-    def prefix
-      super.sub(last_prefix, '')
-    end
-
-    def suffix
-      unless super.send(matcher, args.first)
-        super
-      end
     end
 
     def matcher
