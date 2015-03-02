@@ -2,7 +2,7 @@ require 'delegate'
 
 module SubDiff
   class DiffMatch < SimpleDelegator
-    attr_reader :prefix, :suffix, :replacement
+    attr_reader :replacement, :prefix, :suffix
 
     alias_method :match, :__getobj__
 
