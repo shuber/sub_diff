@@ -10,7 +10,7 @@ An enumerable collection of "diff" objects for your <tt>String#sub</tt> and <tt>
 
 == Usage
 
-The new <tt>String</tt> methods <tt>sub_diff</tt> and <tt>gsub_diff</tt> accept the same arguments as their <tt>sub</tt> and <tt>gsub</tt> counterparts.
+This gem introduces two new methods to <tt>String</tt>, <tt>sub_diff</tt> and <tt>gsub_diff</tt>, which accept the same arguments as their <tt>sub</tt> and <tt>gsub</tt> counterparts.
 
   example = 'this is a test'
   replaced = example.gsub_diff(/(\S*is)/, 'replaced(\1)')
@@ -19,7 +19,11 @@ The <tt>replaced</tt> object behaves just like a <tt>String</tt>.
   
   puts replaced #=> replaced(this) replaced(is) a test
 
-But it also allows you to enumerate thru it, yielding a <tt>Diff</tt> object for each iteration.
+But it also allows you to check if the replacement actually changed anything.
+
+  replaced.changed? #=> true
+
+For a closer look at the changes, you can enumerate thru the returned replacement object, yielding a <tt>Diff</tt> object for each iteration. Each <tt>Diff</tt> object also behaves like a <tt>String</tt> but includes a few additional methods.
   
   replaced.each do |diff|
     puts "    value: #{diff.value.inspect}"
@@ -42,8 +46,6 @@ But it also allows you to enumerate thru it, yielding a <tt>Diff</tt> object for
   #=>     value: " a test"
   #=> value_was: " a test"
   #=>  changed?: false
-
-Each <tt>Diff</tt> object also behaves like a <tt>String</tt> but includes the additional methods above.
 
 
 = Testing
