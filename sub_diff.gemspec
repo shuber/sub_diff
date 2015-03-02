@@ -2,7 +2,7 @@ require File.expand_path('../lib/sub_diff/version', __FILE__)
 
 Gem::Specification.new do |s|
   s.name     = 'sub_diff'
-  s.version  = SubDiff::Version
+  s.version  = SubDiff::VERSION
   s.platform = Gem::Platform::RUBY
 
   s.summary     = 'An enumerable collection of "diff" objects for your <tt>String#sub</tt> and <tt>String#gsub</tt> replacements'
