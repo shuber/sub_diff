@@ -22,7 +22,7 @@ module SubDiff
 
     attr_reader :args, :block
     attr_reader :builder, :diffs
-    attr_reader :match, :replacement, :prefix, :suffix
+    attr_reader :match, :prefix, :suffix
 
     def_delegator :builder, :default, :diffable
 
@@ -35,10 +35,13 @@ module SubDiff
     def diff!
       diffable.send(diff_method, args.first) do |match|
         cache(match: match, prefix: $`, suffix: $') do
-          replacement = match.sub(*args, &block)
           cache(replacement: replacement) { yield }
         end
       end
+    end
+  
+    def replacement
+      match.sub(*args, &block)
     end
 
     def process
