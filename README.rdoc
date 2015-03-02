@@ -1,6 +1,6 @@
 = sub_diff - {<img src="https://secure.travis-ci.org/shuber/sub_diff.png"/>}[http://travis-ci.org/shuber/sub_diff] {<img src="https://codeclimate.com/github/shuber/sub_diff/badges/gpa.svg" />}[https://codeclimate.com/github/shuber/sub_diff] {<img src="https://codeclimate.com/github/shuber/sub_diff/badges/coverage.svg" />}[https://codeclimate.com/github/shuber/sub_diff]
 
-An enumerable collection of "diff" objects for your {<tt>String#sub</tt>}[http://ruby-doc.org//core-2.2.0/String.html#method-i-sub] and {<tt>String#gsub</tt>}[http://ruby-doc.org//core-2.2.0/String.html#method-i-gsub] replacements
+Inspect the changes of your {<tt>String#sub</tt>}[http://ruby-doc.org//core-2.2.0/String.html#method-i-sub] and {<tt>String#gsub</tt>}[http://ruby-doc.org//core-2.2.0/String.html#method-i-gsub] replacements.
 
 
 == Installation

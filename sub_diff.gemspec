@@ -5,8 +5,8 @@ Gem::Specification.new do |s|
   s.version  = SubDiff::VERSION
   s.platform = Gem::Platform::RUBY
 
-  s.summary     = 'An enumerable collection of "diff" objects for your <tt>String#sub</tt> and <tt>String#gsub</tt> replacements'
-  s.description = 'An enumerable collection of "diff" objects for your <tt>String#sub</tt> and <tt>String#gsub</tt> replacements'
+  s.summary     = 'Inspect the changes of your `String#sub` and `String#gsub` replacements'
+  s.description = 'A closer inspection of the changes from `String#sub` and `String#gsub` replacements'
 
   s.author   = 'Sean Huber'
   s.email    = 'github@shuber.io'
