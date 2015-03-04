@@ -13,11 +13,11 @@ module SubDiff
     end
 
     def push(*args)
-      tap do
-        if args.compact.any?
-          diffs << Diff.new(*args)
-        end
+      if args.compact.any?
+        diffs << Diff.new(*args)
       end
+
+      self
     end
 
     protected
