@@ -32,7 +32,7 @@ RSpec.describe SubDiff::DiffBuilder do
 
     it 'should ignore nil diffs' do
       action = proc { subject.push(nil) }
-      expect(action).not_to change(subject, :collection)
+      expect(action).not_to change(subject.collection, :diffs)
     end
 
     it 'should return the builder instance' do

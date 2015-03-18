@@ -34,19 +34,21 @@ RSpec.describe SubDiff::Gsub do
       end
     end
 
-    context 'with a hash' do
-      it 'should process arguments correctly' do
-        result = subject.diff(/(\S*is)/, 'is' => 'IS', 'this' => 'THIS')
-        expect(result.to_s).to eq('THIS IS a simple test')
-        expect(result.size).to eq(4)
-      end
-    end
-
     context 'with a block' do
       it 'should process arguments correctly' do
         result = subject.diff('i') { |match| 'x' }
         expect(result.to_s).to eq('thxs xs a sxmple test')
         expect(result.size).to eq(7)
+      end
+    end
+
+    if RUBY_VERSION > '1.8.7'
+      context 'with a hash' do
+        it 'should process arguments correctly' do
+          result = subject.diff(/(\S*is)/, 'is' => 'IS', 'this' => 'THIS')
+          expect(result.to_s).to eq('THIS IS a simple test')
+          expect(result.size).to eq(4)
+        end
       end
     end
   end

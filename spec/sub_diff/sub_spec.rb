@@ -34,19 +34,21 @@ RSpec.describe SubDiff::Sub do
       end
     end
 
-    context 'with a hash' do
-      it 'should process arguments correctly' do
-        result = subject.diff(/simple/, 'simple' => 'harder')
-        expect(result.to_s).to eq('this is a harder test')
-        expect(result.size).to eq(3)
-      end
-    end
-
     context 'with a block' do
       it 'should process arguments correctly' do
         result = subject.diff('simple') { |match| 'block' }
         expect(result.to_s).to eq('this is a block test')
         expect(result.size).to eq(3)
+      end
+    end
+
+    if RUBY_VERSION > '1.8.7'
+      context 'with a hash' do
+        it 'should process arguments correctly' do
+          result = subject.diff(/simple/, 'simple' => 'harder')
+          expect(result.to_s).to eq('this is a harder test')
+          expect(result.size).to eq(3)
+        end
       end
     end
   end
