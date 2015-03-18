@@ -25,13 +25,13 @@ RSpec.describe SubDiff::DiffBuilder do
 
   describe '#push' do
     it 'should append a new diff to the collection' do
-      action = -> { subject.push('test') }
+      action = proc { subject.push('test') }
       expect(action).to change(subject, :collection)
       expect(subject.collection.to_a.last.to_s).to eq('test')
     end
 
     it 'should ignore nil diffs' do
-      action = -> { subject.push(nil) }
+      action = proc { subject.push(nil) }
       expect(action).not_to change(subject, :collection)
     end
 
