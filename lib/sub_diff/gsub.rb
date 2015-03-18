@@ -2,6 +2,11 @@ require_relative 'sub'
 
 module SubDiff
   class Gsub < Sub
+    def initialize(diffable)
+      super
+      @last_prefix = nil
+    end
+
     protected
 
     attr_reader :last_prefix

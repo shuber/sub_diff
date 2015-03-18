@@ -8,6 +8,12 @@ module SubDiff
 
     def initialize(diffable)
       @builder = DiffBuilder.new(diffable)
+      @args = nil
+      @block = nil
+      @diffs = nil
+      @match = nil
+      @prefix = nil
+      @suffix = nil
     end
 
     def diff(*args, &block)
