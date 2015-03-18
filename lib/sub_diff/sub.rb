@@ -1,18 +1,19 @@
 require 'forwardable'
-require_relative 'cache'
+require 'variables'
 require_relative 'diff_builder'
 
 module SubDiff
   class Sub
     extend Forwardable
-    include Cache
 
     def initialize(diffable)
       @builder = DiffBuilder.new(diffable)
     end
 
     def diff(*args, &block)
-      cache(args: args, block: block, diffs: builder.dup) do
+      variables = { args: args, block: block, diffs: builder.dup }
+
+      instance_variable_replace(variables) do
         diff! { process }
         diffs.collection
       end
@@ -34,7 +35,8 @@ module SubDiff
 
     def diff!
       diffable.send(diff_method, args.first) do |match|
-        cache(match: match, prefix: $`, suffix: $') { yield }
+        variables = { match: match, prefix: $`, suffix: $' }
+        instance_variable_replace(variables) { yield }
       end
     end
 

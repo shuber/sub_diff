@@ -23,7 +23,7 @@ module SubDiff
     private
 
     def diff!
-      cache(last_prefix: '') { super }
+      instance_variable_replace(last_prefix: '') { super }
     end
 
     def process
