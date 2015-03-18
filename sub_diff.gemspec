@@ -15,6 +15,5 @@ Gem::Specification.new do |s|
   s.version          = SubDiff::VERSION
 
   s.add_dependency 'variables'
-  s.add_development_dependency 'codeclimate-test-reporter'
   s.add_development_dependency 'rspec'
 end
