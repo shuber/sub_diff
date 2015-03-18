@@ -1,9 +1,13 @@
-rvm:
-  - 1.8.7
-  - 1.9.2
-  - 2.0.0
-  - ruby-head
-script: bundle exec rspec
 addons:
   code_climate:
     repo_token: 6f133fcc28caad1e1099287a1ac4ee0ac4fb428cdd9c5cb9424be1110ef8704a
+
+install: bundle install --jobs 3 --retry 3
+
+rvm:
+  - 1.8.7
+  - 1.9.3
+  - 2.0.0
+  - ruby-head
+
+script: bundle exec rspec
