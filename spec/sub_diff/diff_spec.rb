@@ -1,4 +1,4 @@
-require_relative '../../lib/sub_diff/diff'
+require File.expand_path('../../../lib/sub_diff/diff', __FILE__)
 
 RSpec.describe SubDiff::Diff do
   let(:diff)                   { described_class.new(value, value_was) }
@@ -35,17 +35,17 @@ RSpec.describe SubDiff::Diff do
 
   describe '#value' do
     it 'should return the diff value' do
-      expect(diff.value).to eq value
+      expect(diff.value).to eq(value)
     end
   end
 
   describe '#value_was' do
     it 'should accept value_was' do
-      expect(diff.value_was).to eq value_was
+      expect(diff.value_was).to eq(value_was)
     end
 
     it 'should set value_was to value if it is not specified' do
-      expect(diff_without_value_was.value_was).to eq value
+      expect(diff_without_value_was.value_was).to eq(value)
     end
   end
 end

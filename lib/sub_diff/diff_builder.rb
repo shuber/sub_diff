@@ -1,5 +1,5 @@
-require_relative 'diff'
-require_relative 'diff_collection'
+require 'sub_diff/diff'
+require 'sub_diff/diff_collection'
 
 module SubDiff
   class DiffBuilder

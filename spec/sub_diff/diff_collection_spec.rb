@@ -1,4 +1,4 @@
-require_relative '../../lib/sub_diff/diff_collection'
+require File.expand_path('../../../lib/sub_diff/diff_collection', __FILE__)
 
 RSpec.describe SubDiff::DiffCollection do
   subject { described_class.new(diffs_with_empty) }
@@ -12,10 +12,10 @@ RSpec.describe SubDiff::DiffCollection do
   end
 
   def diff(value)
-    double 'diff', changed?: false,
-                   empty?: value.empty?,
-                   to_s: value,
-                   to_str: value
+    double 'diff', :changed? => false,
+                   :empty? => value.empty?,
+                   :to_s => value,
+                   :to_str => value
   end
 
   describe '#changed?' do
@@ -31,12 +31,12 @@ RSpec.describe SubDiff::DiffCollection do
 
   describe '#diffs' do
     it 'should exclude empty diffs' do
-      expect(subject.diffs).to eq diffs
+      expect(subject.diffs).to eq(diffs)
     end
   end
 
   describe '#each' do
-    it { is_expected.to be_an Enumerable }
+    it { is_expected.to be_an(Enumerable) }
     it { is_expected.to delegate(:each).to(:diffs) }
   end
 
@@ -44,13 +44,13 @@ RSpec.describe SubDiff::DiffCollection do
     it { is_expected.to delegate(:size).to(:diffs) }
 
     it 'should not use the string size' do
-      expect(subject.size).not_to eq subject.to_s.size
+      expect(subject.size).not_to eq(subject.to_s.size)
     end
   end
 
   describe '#to_s' do
     it 'should join the diff values' do
-      expect(subject.to_s).to eq 'one two three '
+      expect(subject.to_s).to eq('one two three ')
     end
   end
 end

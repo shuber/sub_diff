@@ -1,6 +1,6 @@
 require 'forwardable'
 require 'variables'
-require_relative 'diff_builder'
+require 'sub_diff/diff_builder'
 
 module SubDiff
   class Sub
@@ -17,7 +17,7 @@ module SubDiff
     end
 
     def diff(*args, &block)
-      variables = { args: args, block: block, diffs: builder.dup }
+      variables = { :args => args, :block => block, :diffs => builder.dup }
 
       instance_variable_replace(variables) do
         diff! { process }
@@ -41,7 +41,7 @@ module SubDiff
 
     def diff!
       diffable.send(diff_method, args.first) do |match|
-        variables = { match: match, prefix: $`, suffix: $' }
+        variables = { :match => match, :prefix => $`, :suffix => $' }
         instance_variable_replace(variables) { yield }
       end
     end

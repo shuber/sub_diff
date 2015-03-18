@@ -1,4 +1,4 @@
-require_relative 'sub'
+require 'sub_diff/sub'
 
 module SubDiff
   class Gsub < Sub
@@ -28,7 +28,7 @@ module SubDiff
     private
 
     def diff!
-      instance_variable_replace(last_prefix: '') { super }
+      instance_variable_replace(:last_prefix => '') { super }
     end
 
     def process
