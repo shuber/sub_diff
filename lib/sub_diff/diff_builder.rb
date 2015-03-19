@@ -21,6 +21,7 @@ module SubDiff
 
       self
     end
+    alias_method :<<, :push
 
     private
 

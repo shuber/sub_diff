@@ -28,12 +28,9 @@ module SubDiff
     end
 
     def process(builder, match, search)
-      prefix = prefix(match)
-      suffix = suffix(match, search)
-
-      builder.push(prefix)
+      builder << prefix(match)
       builder.push(match.replacement, match)
-      builder.push(suffix)
+      builder << suffix(match, search)
     end
 
     def prefix(match)
