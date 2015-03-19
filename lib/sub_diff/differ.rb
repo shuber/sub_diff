@@ -10,12 +10,12 @@ module SubDiff
       @diff_method = diff_method
     end
 
-    def diff(search, *args, block)
+    def diff(*args, block)
       collection do |builder|
-        diffable.send(diff_method, search) do |match|
+        diffable.send(diff_method, args.first) do |match|
           # This needs to be called later since it will overwrite
           # the special regex $` (prefix) and $' (suffix) globals
-          replacement = proc { match.sub(search, *args, &block) }
+          replacement = proc { match.sub(*args, &block) }
           match = Match.new(match, $`, $', replacement.call)
           yield(builder, match)
         end

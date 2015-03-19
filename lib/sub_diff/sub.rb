@@ -8,9 +8,9 @@ module SubDiff
       @diffable = diffable
     end
 
-    def diff(search, *args, &block)
-      differ.diff(search, *args, block) do |builder, match|
-        process(builder, match, search)
+    def diff(*args, &block)
+      differ.diff(*args, block) do |builder, match|
+        process(builder, match, args.first)
       end
     end
 
