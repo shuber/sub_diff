@@ -10,7 +10,10 @@ module SubDiff
       @diff_method = diff_method
     end
 
-    def diff(*args, block)
+    def diff(*args)
+      # Ruby 1.8.7 does not support additional args after * (splat)
+      block = args.pop
+
       collection do |builder|
         diffable.send(diff_method, args.first) do |match|
           # This needs to be called later since it will overwrite
