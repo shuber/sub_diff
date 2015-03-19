@@ -3,6 +3,8 @@ require 'sub_diff/diff_collection'
 
 module SubDiff
   class DiffBuilder
+    attr_reader :default, :diffs
+
     def initialize(default)
       @default = default
       @diffs = []
@@ -19,10 +21,6 @@ module SubDiff
 
       self
     end
-
-    protected
-
-    attr_reader :default, :diffs
 
     private
 

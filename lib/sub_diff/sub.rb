@@ -1,57 +1,44 @@
-require 'forwardable'
-require 'variables'
-require 'sub_diff/diff_builder'
+require 'sub_diff/differ'
 
 module SubDiff
   class Sub
-    extend Forwardable
+    attr_reader :diffable
 
     def initialize(diffable)
-      @builder = DiffBuilder.new(diffable)
-      @args = nil
-      @block = nil
-      @diffs = nil
-      @match = nil
-      @prefix = nil
-      @suffix = nil
+      @diffable = diffable
     end
 
-    def diff(*args, &block)
-      variables = { :args => args, :block => block, :diffs => builder.dup }
-
-      instance_variable_replace(variables) do
-        diff! { process }
-        diffs.collection
+    def diff(search, *args, &block)
+      differ.diff(search, *args, block) do |builder, match|
+        process(builder, match, search)
       end
     end
 
-    protected
+    private
 
-    attr_reader :args, :block
-    attr_reader :builder, :diffs
-    attr_reader :match, :prefix, :suffix
-
-    def_delegator :builder, :default, :diffable
+    def differ
+      Differ.new(diffable, diff_method)
+    end
 
     def diff_method
       :sub
     end
 
-    private
+    def process(builder, match, search)
+      prefix = prefix(match)
+      suffix = suffix(match, search)
 
-    def diff!
-      diffable.send(diff_method, args.first) do |match|
-        variables = { :match => match, :prefix => $`, :suffix => $' }
-        instance_variable_replace(variables) { yield }
-      end
+      builder.push(prefix)
+      builder.push(match.replacement, match)
+      builder.push(suffix)
     end
 
-    def process
-      diffs.push(prefix).push(replacement, match).push(suffix)
+    def prefix(match)
+      match.prefix
     end
 
-    def replacement
-      match.sub(*args, &block)
+    def suffix(match, _search)
+      match.suffix
     end
   end
 end

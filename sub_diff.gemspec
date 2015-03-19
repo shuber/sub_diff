@@ -14,6 +14,5 @@ Gem::Specification.new do |s|
   s.test_files       = `git ls-files -- spec/*`.split("\n")
   s.version          = SubDiff::VERSION
 
-  s.add_dependency 'variables'
   s.add_development_dependency 'rspec'
 end

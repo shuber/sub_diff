@@ -23,16 +23,28 @@ RSpec.describe SubDiff::DiffBuilder do
     end
   end
 
+  describe '#default' do
+    it 'should return the initialized default' do
+      expect(subject.default).to eq(default)
+    end
+  end
+
+  describe '#diffs' do
+    it 'should return the diffs array' do
+      expect(subject.diffs).to eq([])
+    end
+  end
+
   describe '#push' do
-    it 'should append a new diff to the collection' do
+    it 'should append a new diff to the diffs collection' do
       action = proc { subject.push('test') }
-      expect(action).to change(subject, :collection)
-      expect(subject.collection.to_a.last.to_s).to eq('test')
+      expect(action).to change(subject, :diffs)
+      expect(subject.diffs.last.to_s).to eq('test')
     end
 
     it 'should ignore nil diffs' do
       action = proc { subject.push(nil) }
-      expect(action).not_to change(subject.collection, :diffs)
+      expect(action).not_to change(subject, :diffs)
     end
 
     it 'should return the builder instance' do

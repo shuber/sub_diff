@@ -2,42 +2,35 @@ require 'sub_diff/sub'
 
 module SubDiff
   class Gsub < Sub
-    def initialize(diffable)
-      super
-      @last_prefix = nil
-    end
-
-    protected
-
-    attr_reader :last_prefix
+    private
 
     def diff_method
       :gsub
     end
 
-    def prefix
+    def process(_builder, match, _search)
+      super
+      last_prefix << prefix(match) << match
+    end
+
+    def last_prefix
+      @last_prefix ||= ''
+    end
+
+    def prefix(_match)
       super.sub(last_prefix, '')
     end
 
-    def suffix
-      unless super.send(matcher, args.first)
+    def suffix(_match, search)
+      matcher = suffix_matcher(search)
+
+      unless super.send(matcher, search)
         super
       end
     end
 
-    private
-
-    def diff!
-      instance_variable_replace(:last_prefix => '') { super }
-    end
-
-    def process
-      super
-      last_prefix << prefix << match
-    end
-
-    def matcher
-      if args.first.is_a?(Regexp)
+    def suffix_matcher(search)
+      if search.is_a?(Regexp)
         :match
       else
         :include?
