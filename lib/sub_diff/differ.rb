@@ -1,5 +1,9 @@
 module SubDiff
   class Differ < Struct.new(:diff_collection, :diff_method)
+    Match = Struct.new(:match, :prefix, :suffix, :replacement) do
+      alias_method :to_str, :match
+    end
+
     def diff(*args)
       # Ruby 1.8.7 does not support additional args after * (splat)
       block = args.pop
@@ -14,10 +18,6 @@ module SubDiff
       end
 
       diff_collection
-    end
-
-    Match = Struct.new(:match, :prefix, :suffix, :replacement) do
-      alias_method :to_str, :match
     end
   end
 end
