@@ -4,10 +4,6 @@ module SubDiff
   class Gsub < Sub
     private
 
-    def diff_method
-      :gsub
-    end
-
     def process(_builder, match, _search)
       super
       last_prefix << prefix(match) << match

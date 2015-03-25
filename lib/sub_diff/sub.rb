@@ -1,13 +1,5 @@
-require 'sub_diff/differ'
-
 module SubDiff
-  class Sub
-    attr_reader :diffable
-
-    def initialize(diffable)
-      @diffable = diffable
-    end
-
+  class Sub < Struct.new(:differ)
     def diff(*args, &block)
       # Ruby 1.8.7 does not support additional args after * (splat)
       args.push(block)
@@ -18,14 +10,6 @@ module SubDiff
     end
 
     private
-
-    def differ
-      Differ.new(diffable, diff_method)
-    end
-
-    def diff_method
-      :sub
-    end
 
     def process(builder, match, search)
       builder << prefix(match)
