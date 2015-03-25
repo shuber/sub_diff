@@ -23,18 +23,11 @@ module SubDiff
 
     def suffix(_match, search)
       matcher = suffix_matcher(search)
-
-      unless super.send(matcher, search)
-        super
-      end
+      super unless super.send(matcher, search)
     end
 
     def suffix_matcher(search)
-      if search.is_a?(Regexp)
-        :match
-      else
-        :include?
-      end
+      search.is_a?(Regexp) ? :match : :include?
     end
   end
 end

@@ -1,43 +1,55 @@
 require File.expand_path('../../../lib/sub_diff/diff_collection', __FILE__)
 
 RSpec.describe SubDiff::DiffCollection do
-  subject { described_class.new(diffs_with_empty) }
+  subject { described_class.new(diffable) }
 
-  let(:diffs_with_empty) do
-    diffs.dup << diff('')
-  end
-
-  let(:diffs) do
-    [diff('one '), diff('two'), diff(' three ')]
-  end
-
-  def diff(value)
-    double 'diff', :changed? => false,
-                   :empty? => value.empty?,
-                   :to_s => value,
-                   :to_str => value
-  end
+  let(:diffable) { 'this is a simple test' }
 
   describe '#changed?' do
     it 'should return true if any diffs have changed' do
-      expect(diffs.first).to receive(:changed?).and_return(true)
+      subject.push('one', 'two')
       expect(subject).to be_changed
     end
 
     it 'should return false if no diffs have changed' do
+      subject.push('same', 'same')
       expect(subject).not_to be_changed
     end
-  end
 
-  describe '#diffs' do
-    it 'should exclude empty diffs' do
-      expect(subject.diffs).to eq(diffs)
+    it 'should return false if there are no diffs' do
+      expect(subject).not_to be_changed
     end
   end
 
   describe '#each' do
     it { is_expected.to be_an(Enumerable) }
     it { is_expected.to delegate(:each).to(:diffs) }
+  end
+
+  describe '#push' do
+    it 'should return self' do
+      expect(subject.push).to eq(subject)
+    end
+
+    it 'should append an unchanged diff' do
+      block = proc { subject.push('unchanged') }
+      expect(block).to change(subject.diffs, :size)
+    end
+
+    it 'should append a changed diff' do
+      block = proc { subject.push('now', 'was') }
+      expect(block).to change(subject.diffs, :size)
+    end
+
+    it 'should not append a nil diff' do
+      block = proc { subject.push(nil) }
+      expect(block).not_to change(subject.diffs, :size)
+    end
+
+    it 'should not append an empty diff' do
+      block = proc { subject.push('') }
+      expect(block).not_to change(subject.diffs, :size)
+    end
   end
 
   describe '#size' do
@@ -48,9 +60,15 @@ RSpec.describe SubDiff::DiffCollection do
     end
   end
 
-  describe '#to_s' do
-    it 'should join the diff values' do
-      expect(subject.to_s).to eq('one two three ')
+  describe '#__getobj__' do
+    it 'should join the diff values if any' do
+      subject.push('test')
+      subject.push('example')
+      expect(subject.__getobj__).to eq('testexample')
+    end
+
+    it 'should return the diffable if diffs are empty' do
+      expect(subject.__getobj__).to eq(diffable)
     end
   end
 end

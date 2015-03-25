@@ -16,7 +16,7 @@ RSpec.describe SubDiff::Gsub do
       it 'should handle no matches correctly' do
         result = subject.diff('no-match', 'test')
         expect(result.to_s).to eq(diffable)
-        expect(result.size).to eq(1)
+        expect(result.size).to eq(0)
       end
     end
 

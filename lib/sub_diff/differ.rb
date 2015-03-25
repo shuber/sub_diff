@@ -1,4 +1,4 @@
-require 'sub_diff/diff_builder'
+require 'sub_diff/diff_collection'
 require 'sub_diff/match'
 
 module SubDiff
@@ -19,6 +19,7 @@ module SubDiff
           # This needs to be called later since it will overwrite
           # the special regex $` (prefix) and $' (suffix) globals
           replacement = proc { match.sub(*args, &block) }
+
           match = Match.new(match, $`, $', replacement.call)
           yield(builder, match)
         end
@@ -28,9 +29,9 @@ module SubDiff
     private
 
     def collection
-      builder = DiffBuilder.new(diffable)
-      yield(builder)
-      builder.collection
+      collection = DiffCollection.new(diffable)
+      yield(collection)
+      collection
     end
   end
 end
