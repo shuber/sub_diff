@@ -3,7 +3,7 @@ require 'forwardable'
 require 'sub_diff/diff'
 
 module SubDiff
-  class DiffCollection < SimpleDelegator
+  class Collection < SimpleDelegator
     extend Forwardable
     include Enumerable
 

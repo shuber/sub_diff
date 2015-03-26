@@ -1,10 +1,10 @@
 require 'forwardable'
-require 'sub_diff/diff_collection'
+require 'sub_diff/collection'
 require 'sub_diff/differ'
 require 'sub_diff/gsub'
 
 module SubDiff
-  class DiffBuilder < Struct.new(:string, :type)
+  class Builder < Struct.new(:string, :type)
     extend Forwardable
 
     def_delegators :instance, :diff
@@ -28,7 +28,7 @@ module SubDiff
     end
 
     def collection
-      DiffCollection.new(string)
+      Collection.new(string)
     end
   end
 end
