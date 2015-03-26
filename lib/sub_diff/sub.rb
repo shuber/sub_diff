@@ -13,16 +13,16 @@ module SubDiff
 
     def diff!(builder, match, search)
       builder << prefix(match)
-      builder.push(match.replacement, match)
+      builder.push(match[:replacement], match[:match])
       builder << suffix(match, search)
     end
 
     def prefix(match)
-      match.prefix
+      match[:prefix]
     end
 
     def suffix(match, _search)
-      match.suffix
+      match[:suffix]
     end
   end
 end

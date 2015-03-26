@@ -6,7 +6,7 @@ module SubDiff
 
     def diff!(_builder, match, _search)
       super
-      last_prefix << prefix(match) << match
+      last_prefix << prefix(match) << match[:match]
     end
 
     def last_prefix
