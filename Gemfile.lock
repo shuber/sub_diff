@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sub_diff (1.0.0)
+    sub_diff (1.0.1)
 
 GEM
   remote: https://www.rubygems.org/
