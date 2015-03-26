@@ -1,5 +1,3 @@
-require 'sub_diff/builder'
-
 module SubDiff
   module CoreExt
     module String

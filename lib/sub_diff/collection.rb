@@ -1,7 +1,3 @@
-require 'delegate'
-require 'forwardable'
-require 'sub_diff/diff'
-
 module SubDiff
   class Collection < SimpleDelegator
     extend Forwardable

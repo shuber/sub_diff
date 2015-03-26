@@ -1,5 +1,3 @@
-require File.expand_path('../../../lib/sub_diff/collection', __FILE__)
-
 RSpec.describe SubDiff::Collection do
   subject { described_class.new(diffable) }
 

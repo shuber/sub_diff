@@ -1,5 +1,3 @@
-require 'delegate'
-
 module SubDiff
   class Diff < SimpleDelegator
     attr_reader :value_was

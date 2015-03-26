@@ -1,5 +1,3 @@
-require 'forwardable'
-
 module SubDiff
   class Differ < Struct.new(:collection, :type)
     extend Forwardable

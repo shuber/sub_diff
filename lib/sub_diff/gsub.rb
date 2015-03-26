@@ -1,5 +1,3 @@
-require 'sub_diff/sub'
-
 module SubDiff
   class Gsub < Sub
     private

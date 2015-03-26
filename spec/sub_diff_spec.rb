@@ -1,5 +1,3 @@
-require File.expand_path('../../lib/sub_diff', __FILE__)
-
 RSpec.describe SubDiff do
   subject { 'this is a simple test' }
 

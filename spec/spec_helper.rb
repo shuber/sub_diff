@@ -10,6 +10,8 @@ rescue LoadError
   # Ignore when testing with Ruby 1.8.7
 end
 
+require File.expand_path('../../lib/sub_diff', __FILE__)
+
 RSpec.configure do |config|
   config.filter_run :focus
   config.raise_errors_for_deprecations!

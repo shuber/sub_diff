@@ -1,5 +1,3 @@
-require File.expand_path('../../../lib/sub_diff/diff', __FILE__)
-
 RSpec.describe SubDiff::Diff do
   let(:diff)                   { described_class.new(value, value_was) }
   let(:diff_without_value_was) { described_class.new(value) }

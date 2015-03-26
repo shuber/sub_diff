@@ -1,8 +1,3 @@
-require 'forwardable'
-require 'sub_diff/collection'
-require 'sub_diff/differ'
-require 'sub_diff/gsub'
-
 module SubDiff
   class Builder < Struct.new(:string, :type)
     extend Forwardable
