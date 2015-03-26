@@ -1,6 +1,6 @@
 module SubDiff
   class Differ < Struct.new(:diff_collection, :diff_method)
-    Match = Struct.new(:match, :prefix, :suffix, :replacement) do
+    class Match < Struct.new(:match, :prefix, :suffix, :replacement)
       alias_method :to_str, :match
     end
 
