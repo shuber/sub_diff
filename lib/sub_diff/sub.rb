@@ -5,13 +5,13 @@ module SubDiff
       args.push(block)
 
       differ.diff(*args) do |builder, match|
-        process(builder, match, args.first)
+        diff!(builder, match, args.first)
       end
     end
 
     private
 
-    def process(builder, match, search)
+    def diff!(builder, match, search)
       builder << prefix(match)
       builder.push(match.replacement, match)
       builder << suffix(match, search)
