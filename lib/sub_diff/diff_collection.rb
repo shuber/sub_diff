@@ -35,7 +35,7 @@ module SubDiff
 
     def append(diff)
       unless diff.empty?
-        @diffs << diff
+        diffs << diff
         __setobj__(diffs.join)
       end
     end
