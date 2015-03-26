@@ -29,10 +29,10 @@ This gem introduces a couple new methods to [`String`](http://ruby-doc.org/core-
 These methods accept the same arguments as their `sub` and `gsub` counterparts.
 
 ```ruby
-replaced = 'this is a test'.gsub_diff(/(\S*is)/, 'replaced(\1)') #=> #<DiffCollection:0x007fc532049508>
+replaced = 'this is a test'.gsub_diff(/(\S*is)/, 'replaced(\1)') #=> #<SubDiff::Collection:0x007fc532049508>
 ```
 
-The difference is that it returns a `DiffCollection` instead. This object behaves just like a `String`.
+The difference is that it returns a `SubDiff::Collection` instead. This object behaves just like a `String`.
 
 ```ruby
 puts replaced #=> "replaced(this) replaced(is) a test"
@@ -88,13 +88,15 @@ end
 
 [YARD Documentation](http://www.rubydoc.info/github/shuber/sub_diff)
 
-* `Diff#changed?`
-* `Diff#value`
-* `Diff#value_was`
-* `DiffCollection#changed?`
-* `DiffCollection#diffs`
-* `DiffCollection#each`
-* `DiffCollection#size`
+* `String#gsub`
+* `String#sub`
+* `SubDiff::Diff#changed?`
+* `SubDiff::Diff#value`
+* `SubDiff::Diff#value_was`
+* `SubDiff::Collection#changed?`
+* `SubDiff::Collection#diffs`
+* `SubDiff::Collection#each`
+* `SubDiff::Collection#size`
 
 ## Testing
 
