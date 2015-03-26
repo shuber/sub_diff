@@ -7,14 +7,14 @@ module SubDiff
     extend Forwardable
     include Enumerable
 
-    attr_reader :diffable, :diffs
+    attr_reader :string, :diffs
 
     def_delegators :diffs, :each, :size
 
-    def initialize(diffable)
-      @diffable = diffable
+    def initialize(string)
+      @string = string
       @diffs = []
-      super(diffable)
+      super(string)
     end
 
     def changed?

@@ -23,7 +23,7 @@ module SubDiff
     private
 
     def differ
-      diff_collection.diffable.method(diff_method)
+      diff_collection.string.method(diff_method)
     end
   end
 end
