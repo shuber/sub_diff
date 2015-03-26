@@ -17,19 +17,7 @@ module SubDiff
       diffs.any?(&:changed?)
     end
 
-    def push(*args)
-      if args.compact.any?
-        diff = Diff.new(*args)
-        append(diff)
-      end
-
-      self
-    end
-    alias_method :<<, :push
-
-    private
-
-    def append(diff)
+    def push(diff)
       unless diff.empty?
         diffs << diff
         __setobj__(diffs.join)

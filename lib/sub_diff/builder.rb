@@ -1,29 +1,38 @@
 module SubDiff
   class Builder < Struct.new(:string, :type)
-    extend Forwardable
+    def diff(*args, &block)
+      builder.diff(*args, &block)
+      collection
+    end
 
-    def_delegators :instance, :diff
+    def push(*args)
+      if args.compact.any?
+        diff = Diff.new(*args)
+        collection.push(diff)
+      end
+    end
+    alias_method :<<, :push
 
     private
 
-    def instance
-      builder.new(differ)
-    end
-
     def builder
-      Module.nesting.last.const_get(constant)
+      constant.new(differ)
     end
 
     def constant
+      Module.nesting.last.const_get(constant_name)
+    end
+
+    def constant_name
       type.to_s.capitalize
     end
 
     def differ
-      Differ.new(collection, type)
+      Differ.new(self, type)
     end
 
     def collection
-      Collection.new(string)
+      @collection ||= Collection.new(string)
     end
   end
 end

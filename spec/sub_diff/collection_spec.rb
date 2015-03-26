@@ -5,12 +5,14 @@ RSpec.describe SubDiff::Collection do
 
   describe '#changed?' do
     it 'should return true if any diffs have changed' do
-      subject.push('one', 'two')
+      diff = double('diff', :changed? => true, :empty? => false)
+      subject.push(diff)
       expect(subject).to be_changed
     end
 
     it 'should return false if no diffs have changed' do
-      subject.push('same', 'same')
+      diff = double('diff', :changed? => false, :empty? => false)
+      subject.push(diff)
       expect(subject).not_to be_changed
     end
 
@@ -25,27 +27,15 @@ RSpec.describe SubDiff::Collection do
   end
 
   describe '#push' do
-    it 'should return self' do
-      expect(subject.push).to eq(subject)
-    end
-
-    it 'should append an unchanged diff' do
-      block = proc { subject.push('unchanged') }
+    it 'should append a diff' do
+      diff = double('diff', :empty? => false)
+      block = proc { subject.push(diff) }
       expect(block).to change(subject.diffs, :size)
-    end
-
-    it 'should append a changed diff' do
-      block = proc { subject.push('now', 'was') }
-      expect(block).to change(subject.diffs, :size)
-    end
-
-    it 'should not append a nil diff' do
-      block = proc { subject.push(nil) }
-      expect(block).not_to change(subject.diffs, :size)
     end
 
     it 'should not append an empty diff' do
-      block = proc { subject.push('') }
+      diff = double('diff', :empty? => true)
+      block = proc { subject.push(diff) }
       expect(block).not_to change(subject.diffs, :size)
     end
   end
