@@ -21,26 +21,44 @@ Ruby 1.8.7+
 
 ## Usage
 
-This gem introduces two new methods to `String`, `sub_diff` and `gsub_diff`, which accept the same arguments as their `sub` and `gsub` counterparts.
+This gem introduces a couple new methods to [`String`](http://ruby-doc.org/core-2.2.0/String.html) objects.
+
+* [`String#sub_diff`](http://ruby-doc.org/core-2.2.0/String.html#method-i-sub)
+* [`String#gsub_diff`](http://ruby-doc.org/core-2.2.0/String.html#method-i-gsub)
+
+These methods accept the same arguments as their `sub` and `gsub` counterparts.
 
 ```ruby
 replaced = 'this is a test'.gsub_diff(/(\S*is)/, 'replaced(\1)') #=> #<DiffCollection:0x007fc532049508>
 ```
 
-The `replaced` object behaves just like a `String`.
+The difference is that it returns a `DiffCollection` instead. This object behaves just like a `String`.
 
 ```ruby
 puts replaced #=> "replaced(this) replaced(is) a test"
 ```
 
-It also allows you to check if the replacement actually changed anything.
+But it also allows us to check if the replacement actually *changed* anything.
 
 ```ruby
 replaced.changed? #=> true
 ```
 
-For a closer look at the changes, simply enumerate thru the returned replacements. Each iteration yields a `Diff` object which also behaves like a `String` but includes a few additional methods: `value`, `value_was`, and `changed?`.
-  
+For a closer look at the changes, we can iterate thru each `Diff` in the replacment.
+
+```ruby
+replaced.each do |diff|
+  puts diff.inspect
+end
+
+#=> "replaced(this)"
+#=> " "
+#=> "replaced(is)"
+#=> " a test"
+```
+
+Each `Diff` object behaves just like a string, but also includes a few additional methods.
+
 ```ruby
 replaced.each do |diff|
   puts "    value: #{diff.value.inspect}"
@@ -70,6 +88,13 @@ end
 
 [YARD Documentation](http://www.rubydoc.info/github/shuber/sub_diff)
 
+* `Diff#changed?`
+* `Diff#value`
+* `Diff#value_was`
+* `DiffCollection#changed?`
+* `DiffCollection#diffs`
+* `DiffCollection#each`
+* `DiffCollection#size`
 
 ## Testing
 
