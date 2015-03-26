@@ -8,7 +8,7 @@ module SubDiff
       # Ruby 1.8.7 does not support additional args after * (splat)
       block = args.pop
 
-      diff_collection.diffable.send(diff_method, args.first) do |match|
+      differ.call(args.first) do |match|
         # This needs to be called later since it will overwrite
         # the special regex $` (prefix) and $' (suffix) globals
         replacement = proc { match.sub(*args, &block) }
@@ -18,6 +18,12 @@ module SubDiff
       end
 
       diff_collection
+    end
+
+    private
+
+    def differ
+      diff_collection.diffable.method(diff_method)
     end
   end
 end
