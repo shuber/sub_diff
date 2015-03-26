@@ -32,7 +32,7 @@ These methods accept the same arguments as their `sub` and `gsub` counterparts.
 replaced = 'this is a test'.gsub_diff(/(\S*is)/, 'replaced(\1)') #=> #<SubDiff::Collection:0x007fc532049508>
 ```
 
-The difference is that it returns a `SubDiff::Collection` instead. This object behaves just like a `String`.
+The difference is that it returns a `SubDiff::Collection` instead. This object behaves like a `String`.
 
 ```ruby
 puts replaced #=> "replaced(this) replaced(is) a test"
