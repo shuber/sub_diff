@@ -14,6 +14,7 @@ module SubDiff
     def initialize(diffable)
       @diffable = diffable
       @diffs = []
+      super(diffable)
     end
 
     def changed?
@@ -30,19 +31,12 @@ module SubDiff
     end
     alias_method :<<, :push
 
-    def __getobj__
-      if diffs.any?
-        diffs.join
-      else
-        diffable
-      end
-    end
-
     private
 
     def append(diff)
       unless diff.empty?
         @diffs << diff
+        __setobj__(diffs.join)
       end
     end
   end
