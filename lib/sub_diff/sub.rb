@@ -4,25 +4,25 @@ module SubDiff
       # Ruby 1.8.7 does not support additional args after * (splat)
       args.push(block)
 
-      differ.diff(*args) do |builder, match|
-        diff!(builder, match, args.first)
+      differ.diff(*args) do |builder, diff|
+        diff!(builder, diff, args.first)
       end
     end
 
     private
 
-    def diff!(builder, match, search)
-      builder << prefix(match)
-      builder.push(match[:replacement], match[:match])
-      builder << suffix(match, search)
+    def diff!(builder, diff, search)
+      builder << prefix(diff)
+      builder.push(diff[:replacement], diff[:match])
+      builder << suffix(diff, search)
     end
 
-    def prefix(match)
-      match[:prefix]
+    def prefix(diff)
+      diff[:prefix]
     end
 
-    def suffix(match, _search)
-      match[:suffix]
+    def suffix(diff, _search)
+      diff[:suffix]
     end
   end
 end

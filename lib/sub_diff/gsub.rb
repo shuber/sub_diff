@@ -4,20 +4,20 @@ module SubDiff
   class Gsub < Sub
     private
 
-    def diff!(_builder, match, _search)
+    def diff!(_builder, diff, _search)
       super
-      last_prefix << prefix(match) << match[:match]
+      last_prefix << prefix(diff) << diff[:match]
     end
 
     def last_prefix
       @last_prefix ||= ''
     end
 
-    def prefix(_match)
+    def prefix(_diff)
       super.sub(last_prefix, '')
     end
 
-    def suffix(_match, search)
+    def suffix(_diff, search)
       matcher = suffix_matcher(search)
       super unless super.send(matcher, search)
     end
