@@ -88,8 +88,8 @@ end
 
 [YARD Documentation](http://www.rubydoc.info/github/shuber/sub_diff)
 
-* `String#gsub`
-* `String#sub`
+* `String#sub_diff`
+* `String#gsub_diff`
 * `SubDiff::Diff#changed?`
 * `SubDiff::Diff#value`
 * `SubDiff::Diff#value_was`
