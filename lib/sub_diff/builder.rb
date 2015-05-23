@@ -1,13 +1,12 @@
 module SubDiff
   class Builder
-    attr_reader :string, :type
-
     def initialize(string, type)
       @string = string
       @type = type
     end
 
     def diff(*args, &block)
+      @collection = Collection.new(string)
       adapter.diff(*args, &block)
       collection
     end
@@ -21,6 +20,8 @@ module SubDiff
     alias_method :<<, :push
 
     private
+
+    attr_reader :collection, :string, :type
 
     def adapter
       adapter_class.new(differ)
@@ -36,10 +37,6 @@ module SubDiff
 
     def differ
       Differ.new(self, type)
-    end
-
-    def collection
-      @collection ||= Collection.new(string)
     end
   end
 end
