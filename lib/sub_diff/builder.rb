@@ -1,5 +1,12 @@
 module SubDiff
-  class Builder < Struct.new(:string, :type)
+  class Builder
+    attr_reader :string, :type
+
+    def initialize(string, type)
+      @string = string
+      @type = type
+    end
+
     def diff(*args, &block)
       builder.diff(*args, &block)
       collection

@@ -1,8 +1,15 @@
 module SubDiff
-  class Differ < Struct.new(:builder, :type)
+  class Differ
     extend Forwardable
 
     def_delegators :builder, :string
+
+    attr_reader :builder, :type
+
+    def initialize(builder, type)
+      @builder = builder
+      @type = type
+    end
 
     def each_diff(*args)
       # Ruby 1.8.7 does not support additional args after * (splat)

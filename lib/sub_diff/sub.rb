@@ -1,5 +1,11 @@
 module SubDiff
-  class Sub < Struct.new(:differ)
+  class Sub
+    attr_reader :differ
+
+    def initialize(differ)
+      @differ = differ
+    end
+
     def diff(*args, &block)
       # Ruby 1.8.7 does not support additional args after * (splat)
       args.push(block)
