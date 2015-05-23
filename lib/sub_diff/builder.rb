@@ -8,7 +8,7 @@ module SubDiff
     end
 
     def diff(*args, &block)
-      builder.diff(*args, &block)
+      adapter.diff(*args, &block)
       collection
     end
 
@@ -22,15 +22,15 @@ module SubDiff
 
     private
 
-    def builder
-      constant.new(differ)
+    def adapter
+      adapter_class.new(differ)
     end
 
-    def constant
-      Module.nesting.last.const_get(constant_name)
+    def adapter_class
+      Module.nesting.last.const_get(adapter_name)
     end
 
-    def constant_name
+    def adapter_name
       type.to_s.capitalize
     end
 
