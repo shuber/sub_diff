@@ -94,8 +94,10 @@ end
 * `SubDiff::Diff#value`
 * `SubDiff::Diff#value_was`
 * `SubDiff::Collection#changed?`
+* `SubDiff::Collection#clear`
 * `SubDiff::Collection#diffs`
 * `SubDiff::Collection#each`
+* `SubDiff::Collection#reset`
 * `SubDiff::Collection#size`
 
 ## Testing
