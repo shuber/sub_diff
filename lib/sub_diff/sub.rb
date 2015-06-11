@@ -1,5 +1,7 @@
 module SubDiff
   class Sub
+    attr_reader :differ
+
     def initialize(differ)
       @differ = differ
     end
@@ -14,8 +16,6 @@ module SubDiff
     end
 
     private
-
-    attr_reader :differ
 
     def process(builder, diff, search)
       builder << prefix(diff)

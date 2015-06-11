@@ -4,6 +4,8 @@ module SubDiff
 
     def_delegators :builder, :string
 
+    attr_reader :builder, :type
+
     def initialize(builder, type)
       @builder = builder
       @type = type
@@ -19,9 +21,5 @@ module SubDiff
         yield(builder, diff)
       end
     end
-
-    private
-
-    attr_reader :builder, :type
   end
 end

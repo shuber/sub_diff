@@ -6,6 +6,8 @@ module SubDiff
   #
   # @api private
   class Builder
+    attr_reader :string, :type
+
     # @param string [String] the string to perform a replacement on.
     # @param type [Symbol] the type of replacement - :sub or :gsub.
     def initialize(string, type)
@@ -30,8 +32,6 @@ module SubDiff
 
     private
 
-    attr_reader :string, :type
-
     def build_diff_collection(&block)
       collection.reset(&block).dup
     end
@@ -41,7 +41,7 @@ module SubDiff
     end
 
     def adapter
-      @adapter ||= Adapter.new(self)
+      @adapter ||= Adapter.new(differ)
     end
 
     def differ
