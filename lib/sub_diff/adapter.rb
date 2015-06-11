@@ -2,7 +2,7 @@ module SubDiff
   class Adapter
     extend Forwardable
 
-    def_delegators :@differ, :builder
+    def_delegators :differ, :builder
     def_delegators :builder, :type
     def_delegators :instance, :diff
 
