@@ -1,10 +1,19 @@
 module SubDiff
+  # Performs a `Sub` or `Gsub` replacement and returns the
+  # resulting {Collection} of {Diff} objects.
+  #
+  # Used internally by {String#sub_diff} and {String#gsub_diff}.
+  #
+  # @api private
   class Builder
+    # @param string [String] the string to perform a replacement on.
+    # @param type [Symbol] the type of replacement - :sub or :gsub.
     def initialize(string, type)
       @string = string
       @type = type
     end
 
+    # @return [Collection<Diff>] the resulting diffs from the replacement.
     def diff(*args, &block)
       build_diff_collection do
         adapter.diff(*args, &block)
@@ -32,15 +41,7 @@ module SubDiff
     end
 
     def adapter
-      adapter_class.new(differ)
-    end
-
-    def adapter_class
-      Module.nesting.last.const_get(adapter_name)
-    end
-
-    def adapter_name
-      type.to_s.capitalize
+      Adapter.new(self)
     end
 
     def differ
