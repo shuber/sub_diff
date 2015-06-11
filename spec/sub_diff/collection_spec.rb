@@ -83,7 +83,7 @@ RSpec.describe SubDiff::Collection do
     end
 
     it 'should return the instance itself' do
-      expect(block.call).to eq(subject)
+      expect(block.call.object_id).to eq(subject.object_id)
     end
   end
 
