@@ -6,6 +6,7 @@ module SubDiff
     attr_reader :string, :diffs
 
     def_delegators :diffs, :each, :size
+    def_delegators :__getobj__, :to_s
 
     def initialize(string)
       @string = string
