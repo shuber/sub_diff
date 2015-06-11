@@ -35,6 +35,10 @@ RSpec.describe SubDiff::Collection do
       expect(block).to change(subject, :to_s)
       expect(subject.to_s).to eq('')
     end
+
+    it 'should return the instance itself' do
+      expect(block.call.object_id).to eq(subject.object_id)
+    end
   end
 
   describe '#each' do

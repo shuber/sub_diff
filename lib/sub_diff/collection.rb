@@ -21,6 +21,7 @@ module SubDiff
     def clear
       diffs.clear
       __setobj__('')
+      self
     end
 
     def push(diff)
