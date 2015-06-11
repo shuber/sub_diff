@@ -3,10 +3,10 @@ module SubDiff
     extend Forwardable
     include Enumerable
 
-    attr_reader :string, :diffs
-
     def_delegators :diffs, :each, :size
     def_delegators :__getobj__, :to_s
+
+    attr_reader :string, :diffs
 
     def initialize(string)
       @string = string
