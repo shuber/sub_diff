@@ -41,11 +41,11 @@ module SubDiff
     end
 
     def adapter
-      Adapter.new(self)
+      @adapter ||= Adapter.new(self)
     end
 
     def differ
-      Differ.new(self, type)
+      @differ ||= Differ.new(self, type)
     end
   end
 end
