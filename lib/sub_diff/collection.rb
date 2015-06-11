@@ -17,6 +17,11 @@ module SubDiff
       diffs.any?(&:changed?)
     end
 
+    def clear
+      diffs.clear
+      __setobj__('')
+    end
+
     def push(diff)
       unless diff.empty?
         diffs << diff
@@ -25,7 +30,7 @@ module SubDiff
     end
 
     def reset
-      diffs.clear
+      clear
       __setobj__(string)
       yield if block_given?
       self

@@ -21,6 +21,22 @@ RSpec.describe SubDiff::Collection do
     end
   end
 
+  describe '#clear' do
+    before { subject.push('example') }
+
+    let(:block) { proc { subject.clear } }
+
+    it 'should clear diffs' do
+      expect(block).to change(subject, :size)
+      expect(subject.diffs).to be_empty
+    end
+
+    it 'should clear string' do
+      expect(block).to change(subject, :to_s)
+      expect(subject.to_s).to eq('')
+    end
+  end
+
   describe '#each' do
     it { is_expected.to be_an(Enumerable) }
     it { is_expected.to delegate(:each).to(:diffs) }
