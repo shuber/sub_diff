@@ -23,5 +23,12 @@ module SubDiff
         __setobj__(diffs.join)
       end
     end
+
+    def reset
+      diffs.clear
+      __setobj__(string)
+      yield if block_given?
+      self
+    end
   end
 end

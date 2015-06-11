@@ -40,6 +40,33 @@ RSpec.describe SubDiff::Collection do
     end
   end
 
+  describe '#reset' do
+    before { subject.push('example') }
+
+    let(:block) { proc { subject.reset } }
+
+    it 'should empty diffs' do
+      expect(block).to change(subject, :size)
+      expect(subject.diffs).to be_empty
+    end
+
+    it 'should reset string' do
+      expect(block).to change(subject, :to_s)
+      expect(subject.to_s).to eq(diffable)
+    end
+
+    it 'should yield if a block is given' do
+      local = 'test'
+      block = proc { local = 'changed' }
+      subject.reset(&block)
+      expect(local).to eq('changed')
+    end
+
+    it 'should return the instance itself' do
+      expect(block.call).to eq(subject)
+    end
+  end
+
   describe '#size' do
     it { is_expected.to delegate(:size).to(:diffs) }
 

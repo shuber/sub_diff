@@ -2,6 +2,14 @@ RSpec.describe SubDiff do
   subject { 'this is a simple test' }
 
   describe '#sub_diff' do
+    context 'when called multiple times with the same arguments' do
+      it 'should return a new object' do
+        first = subject.sub_diff('simple', 'very simple')
+        second = subject.sub_diff('simple', 'very simple')
+        expect(second.object_id).not_to eq(first.object_id)
+      end
+    end
+
     context 'with a string' do
       it 'should process arguments correctly' do
         result = subject.sub_diff('simple', 'very simple')
@@ -50,6 +58,14 @@ RSpec.describe SubDiff do
   end
 
   describe '#gsub_diff' do
+    context 'when called multiple times with the same arguments' do
+      it 'should return a new object' do
+        first = subject.gsub_diff('i', 'x')
+        second = subject.gsub_diff('x', 'x')
+        expect(second.object_id).not_to eq(first.object_id)
+      end
+    end
+
     context 'with a string' do
       it 'should process arguments correctly' do
         result = subject.gsub_diff('i', 'x')

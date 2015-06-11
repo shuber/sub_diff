@@ -6,9 +6,7 @@ module SubDiff
     end
 
     def diff(*args, &block)
-      @collection = Collection.new(string)
-      adapter.diff(*args, &block)
-      collection
+      build { adapter.diff(*args, &block) }
     end
 
     def push(*args)
@@ -21,7 +19,15 @@ module SubDiff
 
     private
 
-    attr_reader :collection, :string, :type
+    attr_reader :string, :type
+
+    def build(&block)
+      collection.reset(&block).dup
+    end
+
+    def collection
+      @collection ||= Collection.new(string)
+    end
 
     def adapter
       adapter_class.new(differ)
