@@ -6,7 +6,9 @@ module SubDiff
     end
 
     def diff(*args, &block)
-      build { adapter.diff(*args, &block) }
+      build_diff_collection do
+        adapter.diff(*args, &block)
+      end
     end
 
     def push(*args)
@@ -21,7 +23,7 @@ module SubDiff
 
     attr_reader :string, :type
 
-    def build(&block)
+    def build_diff_collection(&block)
       collection.reset(&block).dup
     end
 
