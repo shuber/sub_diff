@@ -4,7 +4,7 @@ module SubDiff
 
     def_delegators :differ, :builder
     def_delegators :builder, :diff_method
-    def_delegators :instance, :diff
+    def_delegators :adapter, :diff
 
     attr_reader :differ
 
@@ -14,7 +14,7 @@ module SubDiff
 
     private
 
-    def instance
+    def adapter
       adapter_class.new(differ)
     end
 
