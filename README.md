@@ -18,6 +18,8 @@ gem install sub_diff
 
 Ruby 2.0+
 
+For older Ruby versions (1.8+), use the [1.0.7](https://github.com/shuber/sub_diff/tree/1.0.7) tag.
+
 
 ## Usage
 
