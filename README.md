@@ -16,7 +16,7 @@ gem install sub_diff
 
 ## Requirements
 
-Ruby 1.8.7+
+Ruby 2.0+
 
 
 ## Usage

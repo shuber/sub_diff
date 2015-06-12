@@ -46,13 +46,11 @@ RSpec.describe SubDiff do
       end
     end
 
-    if RUBY_VERSION > '1.8.7'
-      context 'with a hash' do
-        it 'should process arguments correctly' do
-          result = subject.sub_diff(/simple/, 'simple' => 'harder')
-          expect(result.to_s).to eq('this is a harder test')
-          expect(result.size).to eq(3)
-        end
+    context 'with a hash' do
+      it 'should process arguments correctly' do
+        result = subject.sub_diff(/simple/, 'simple' => 'harder')
+        expect(result.to_s).to eq('this is a harder test')
+        expect(result.size).to eq(3)
       end
     end
   end
@@ -102,13 +100,11 @@ RSpec.describe SubDiff do
       end
     end
 
-    if RUBY_VERSION > '1.8.7'
-      context 'with a hash' do
-        it 'should process arguments correctly' do
-          result = subject.gsub_diff(/(\S*is)/, 'is' => 'IS', 'this' => 'THIS')
-          expect(result.to_s).to eq('THIS IS a simple test')
-          expect(result.size).to eq(4)
-        end
+    context 'with a hash' do
+      it 'should process arguments correctly' do
+        result = subject.gsub_diff(/(\S*is)/, 'is' => 'IS', 'this' => 'THIS')
+        expect(result.to_s).to eq('THIS IS a simple test')
+        expect(result.size).to eq(4)
       end
     end
   end

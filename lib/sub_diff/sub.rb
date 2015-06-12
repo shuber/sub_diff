@@ -6,12 +6,9 @@ module SubDiff
       @differ = differ
     end
 
-    def diff(*args, &block)
-      # Ruby 1.8.7 does not support additional args after * (splat)
-      args.push(block)
-
-      differ.each_diff(*args) do |builder, diff|
-        process(builder, diff, args.first)
+    def diff(search, *args, &block)
+      differ.each_diff(search, *args, block) do |builder, diff|
+        process(builder, diff, search)
       end
     end
 
