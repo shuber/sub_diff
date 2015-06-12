@@ -120,4 +120,4 @@ bundle exec rspec
 
 ## License
 
-[MIT](https://github.com/shuber/sub_diff/blob/master/LICENSE)  - Copyright © 2011 Sean Huber
+[MIT](https://github.com/shuber/sub_diff/blob/master/LICENSE)  - Copyright © 2011-2015 Sean Huber
