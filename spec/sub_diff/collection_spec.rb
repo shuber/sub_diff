@@ -43,7 +43,6 @@ RSpec.describe SubDiff::Collection do
 
   describe '#each' do
     it { is_expected.to be_an(Enumerable) }
-    it { is_expected.to delegate(:each).to(:diffs) }
   end
 
   describe '#push' do
@@ -88,7 +87,9 @@ RSpec.describe SubDiff::Collection do
   end
 
   describe '#size' do
-    it { is_expected.to delegate(:size).to(:diffs) }
+    it 'should use the diffs size' do
+      expect(subject.size).to eq(subject.diffs.size)
+    end
 
     it 'should not use the string size' do
       expect(subject.size).not_to eq(subject.to_s.size)
