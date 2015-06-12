@@ -16,8 +16,10 @@ module SubDiff
     end
 
     def suffix(_diff, search)
+      suffix = super
       matcher = suffix_matcher(search)
-      super unless super.send(matcher, search)
+      skip_suffix = suffix.send(matcher, search)
+      suffix unless skip_suffix
     end
 
     def suffix_matcher(search)
