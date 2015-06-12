@@ -1,4 +1,10 @@
 module SubDiff
+  # Performs a {Sub} or {Gsub} replacement and returns
+  # the resulting {Collection} of {Diff} objects.
+  #
+  # Used internally by {String#sub_diff} and {String#gsub_diff}.
+  #
+  # @api private
   class Builder
     attr_reader :string, :diff_method
 

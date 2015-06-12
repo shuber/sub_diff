@@ -1,4 +1,10 @@
 module SubDiff
+  # Performs a {String#sub} or {String#gsub} replacement
+  # while yielding each match to a block.
+  #
+  # Used internally by {Sub}.
+  #
+  # @api private
   class Differ
     extend Forwardable
 

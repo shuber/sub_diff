@@ -1,4 +1,10 @@
 module SubDiff
+  # Constructs an instance of {Sub} or {Gsub} to be
+  # used as a receiver for delegated calls to `diff`.
+  #
+  # Used internally by {Builder}.
+  #
+  # @api private
   class Adapter
     extend Forwardable
 

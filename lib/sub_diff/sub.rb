@@ -1,4 +1,10 @@
 module SubDiff
+  # Processes matches for {String#sub} replacements
+  # to build up a {Collection} of {Diff} objects.
+  #
+  # Used internally by {Adapter}.
+  #
+  # @api private
   class Sub
     attr_reader :differ
 

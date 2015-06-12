@@ -1,4 +1,10 @@
 module SubDiff
+  # Processes matches for {String#gsub} replacements
+  # to build up a {Collection} of {Diff} objects.
+  #
+  # Used internally by {Adapter}.
+  #
+  # @api private
   class Gsub < Sub
     private
 
