@@ -3,7 +3,7 @@ module SubDiff
     extend Forwardable
 
     def_delegators :differ, :builder
-    def_delegators :builder, :type
+    def_delegators :builder, :diff_method
     def_delegators :instance, :diff
 
     attr_reader :differ
@@ -23,7 +23,7 @@ module SubDiff
     end
 
     def adapter_name
-      type.to_s.capitalize
+      diff_method.to_s.capitalize
     end
   end
 end

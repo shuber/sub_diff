@@ -1,10 +1,10 @@
 module SubDiff
   class Builder
-    attr_reader :string, :type
+    attr_reader :string, :diff_method
 
-    def initialize(string, type)
+    def initialize(string, diff_method)
       @string = string
-      @type = type
+      @diff_method = diff_method
     end
 
     def diff(*args, &block)
@@ -36,7 +36,7 @@ module SubDiff
     end
 
     def differ
-      @differ ||= Differ.new(self, type)
+      @differ ||= Differ.new(self)
     end
   end
 end
