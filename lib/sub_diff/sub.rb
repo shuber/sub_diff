@@ -9,14 +9,14 @@ module SubDiff
     include Buildable
 
     def diff(search, *args, &block)
-      differ.each_diff(search, *args, block) do |diff|
-        process(diff, search)
+      differ.match(search, *args, block) do |diff|
+        append_diff_to_builder(diff, search)
       end
     end
 
     private
 
-    def process(diff, search)
+    def append_diff_to_builder(diff, search)
       builder << prefix(diff)
       builder.push(diff[:replacement], diff[:match])
       builder << suffix(diff, search)

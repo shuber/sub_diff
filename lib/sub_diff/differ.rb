@@ -18,10 +18,10 @@ module SubDiff
   class Differ
     include Buildable
 
-    def each_diff(search, *args, block)
+    def match(search, *args, replacement)
       string.send(diff_method, search) do |match|
         diff = { match: match, prefix: $`, suffix: $' }
-        diff[:replacement] = match.sub(search, *args, &block)
+        diff[:replacement] = match.sub(search, *args, &replacement)
         yield(diff)
       end
     end
