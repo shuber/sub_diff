@@ -1,6 +1,6 @@
 module SubDiff
   # Processes matches for {String#gsub} replacements
-  # to build up a {Collection} of {Diff} objects.
+  # by pushing diffs into a {Builder} instance.
   #
   # Used internally by {Adapter}.
   #
