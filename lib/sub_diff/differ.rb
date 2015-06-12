@@ -1,6 +1,16 @@
 module SubDiff
   # Performs a {String#sub} or {String#gsub} replacement
-  # while yielding each match to a block.
+  # while yielding each match payload to a block.
+  #
+  # The payload contains:
+  #
+  #   match       - the string segment matching the search.
+  #   prefix      - the string segment preceding the match.
+  #   suffix      - the string segment trailing the match.
+  #   replacement - the string segment replacing the match.
+  #
+  # This class uses some special global variables: $` and $'.
+  # See http://ruby-doc.org/core-2.2.0/doc/globals_rdoc.html
   #
   # Used internally by {Sub}.
   #

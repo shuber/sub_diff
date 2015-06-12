@@ -1,9 +1,12 @@
 module SubDiff
-  # Stores a collection of {Diff} objects for all matches
-  # from {String#sub_diff} or {String#gsub_diff} replacement.
+  # Stores a collection of {Diff} objects for all matches from
+  # a {String#sub_diff} or {String#gsub_diff} replacement.
   #
-  # It behaves like a {String} with added {Enumerable} behavior
-  # that delegates to an internal {Array} of {Diff} objects.
+  # It behaves like a {String} that represents the entire
+  # replacement result from {String#sub} or {String#gsub}.
+  #
+  # It also behaves like an {Enumerable} by delegating to
+  # {Collection#diffs} - an {Array} containing each {Diff}.
   #
   # @api public
   class Collection < SimpleDelegator

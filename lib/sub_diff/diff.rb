@@ -1,6 +1,6 @@
 module SubDiff
   # Stores a single match (and optional replacement)
-  # from {String#sub} or {String#gsub} replacements.
+  # from a {String#sub} or {String#gsub} replacement.
   #
   # It behaves just like a {String} but has some additional
   # methods that provides references to the old string,
