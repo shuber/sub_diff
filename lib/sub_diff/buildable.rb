@@ -15,10 +15,8 @@ module SubDiff
     end
 
     def self.included(base)
-      base.class_eval do
-        extend Forwardable
-        def_delegators :builder, :diff_method, :differ, :string
-      end
+      base.extend(Forwardable)
+      base.def_delegators(:builder, :diff_method, :differ, :string)
     end
   end
 end
