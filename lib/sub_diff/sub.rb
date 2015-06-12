@@ -6,15 +6,7 @@ module SubDiff
   #
   # @api private
   class Sub
-    extend Forwardable
-
-    def_delegators :builder, :differ
-
-    attr_reader :builder
-
-    def initialize(builder)
-      @builder = builder
-    end
+    include Buildable
 
     def diff(search, *args, &block)
       differ.each_diff(search, *args, block) do |diff|

@@ -6,16 +6,9 @@ module SubDiff
   #
   # @api private
   class Adapter
-    extend Forwardable
+    include Buildable
 
-    def_delegators :builder, :diff_method
     def_delegators :adapter, :diff
-
-    attr_reader :builder
-
-    def initialize(builder)
-      @builder = builder
-    end
 
     private
 
