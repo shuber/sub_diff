@@ -8,20 +8,19 @@ module SubDiff
   class Adapter
     extend Forwardable
 
-    def_delegators :differ, :builder
     def_delegators :builder, :diff_method
     def_delegators :adapter, :diff
 
-    attr_reader :differ
+    attr_reader :builder
 
-    def initialize(differ)
-      @differ = differ
+    def initialize(builder)
+      @builder = builder
     end
 
     private
 
     def adapter
-      adapter_class.new(differ)
+      adapter_class.new(builder)
     end
 
     def adapter_class

@@ -38,7 +38,7 @@ module SubDiff
     end
 
     def adapter
-      @adapter ||= Adapter.new(differ)
+      @adapter ||= Adapter.new(self)
     end
 
     def differ

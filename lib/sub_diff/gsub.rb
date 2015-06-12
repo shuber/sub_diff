@@ -8,7 +8,7 @@ module SubDiff
   class Gsub < Sub
     private
 
-    def process(_builder, diff, _search)
+    def process(diff, _search)
       super
       last_prefix << prefix(diff) << diff[:match]
     end

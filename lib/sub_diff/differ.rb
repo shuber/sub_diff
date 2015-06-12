@@ -1,6 +1,6 @@
 module SubDiff
   # Performs a {String#sub} or {String#gsub} replacement
-  # while yielding each match payload to a block.
+  # while yielding each match "diff payload" to a block.
   #
   # The payload contains:
   #
@@ -30,7 +30,7 @@ module SubDiff
       string.send(diff_method, search) do |match|
         diff = { match: match, prefix: $`, suffix: $' }
         diff[:replacement] = match.sub(search, *args, &block)
-        yield(builder, diff)
+        yield(diff)
       end
     end
   end

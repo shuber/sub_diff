@@ -6,21 +6,25 @@ module SubDiff
   #
   # @api private
   class Sub
-    attr_reader :differ
+    extend Forwardable
 
-    def initialize(differ)
-      @differ = differ
+    def_delegators :builder, :differ
+
+    attr_reader :builder
+
+    def initialize(builder)
+      @builder = builder
     end
 
     def diff(search, *args, &block)
-      differ.each_diff(search, *args, block) do |builder, diff|
-        process(builder, diff, search)
+      differ.each_diff(search, *args, block) do |diff|
+        process(diff, search)
       end
     end
 
     private
 
-    def process(builder, diff, search)
+    def process(diff, search)
       builder << prefix(diff)
       builder.push(diff[:replacement], diff[:match])
       builder << suffix(diff, search)
