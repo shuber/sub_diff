@@ -2,10 +2,13 @@ module SubDiff
   # Stores a single match (and optional replacement)
   # from a {String#sub} or {String#gsub} replacement.
   #
-  # It behaves just like a {String} but has some additional
-  # methods that provides references to the old string,
-  # the newly replaced string, and a boolean to check
-  # if a replacement was actually made.
+  # It behaves just like a {String} and represents the
+  # newly replaced string if a replacement was made, or
+  # the matched string itself if no changes occurred.
+  #
+  # It also has additional methods that provide access
+  # to the old string, the newly replaced string, and a
+  # boolean to determine if a replacement was actually made.
   #
   # @api public
   class Diff < SimpleDelegator
