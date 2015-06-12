@@ -23,13 +23,8 @@ module SubDiff
 
     def suffix(_diff, search)
       suffix = super
-      matcher = suffix_matcher(search)
-      skip_suffix = suffix.send(matcher, search)
-      suffix unless skip_suffix
-    end
-
-    def suffix_matcher(search)
-      search.is_a?(Regexp) ? :match : :include?
+      regex = Regexp.new(search)
+      suffix unless suffix.match(regex)
     end
   end
 end
