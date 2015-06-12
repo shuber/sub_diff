@@ -4,10 +4,10 @@ module SubDiff
   #
   # The payload contains:
   #
-  #   match       - the string segment matching the search.
-  #   prefix      - the string segment preceding the match.
-  #   suffix      - the string segment trailing the match.
-  #   replacement - the string segment replacing the match.
+  #   match       - the string matching the search.
+  #   prefix      - the string preceding the match.
+  #   suffix      - the string trailing the match.
+  #   replacement - the string replacing the match.
   #
   # This class uses some special global variables: $` and $'.
   # See http://ruby-doc.org/core-2.2.0/doc/globals_rdoc.html
