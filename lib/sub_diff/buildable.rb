@@ -4,7 +4,7 @@ module SubDiff
   #
   # It also delegates commonly used methods to the {Factory} instance.
   #
-  # Used internally by {Adapter}, {Builder}, {Differ}, and {Sub}.
+  # Used internally by {Builder}, {Differ}, and {Sub}.
   #
   # @api private
   module Buildable
