@@ -1,8 +1,8 @@
-module SubDiff
+class SubDiff
   # Performs a {Sub} or {Gsub} replacement and returns
   # the resulting {Collection} of {Diff} objects.
   #
-  # Used internally by {CoreExt::String#sub_diff} and {CoreExt::String#gsub_diff}.
+  # Used internally by {SubDiff}.
   #
   # @api private
   class Builder

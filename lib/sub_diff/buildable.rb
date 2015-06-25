@@ -1,4 +1,4 @@
-module SubDiff
+class SubDiff
   # This module allows classes to accept a {Factory} object as
   # an initializer argument and defines an `attr_reader` for it.
   #

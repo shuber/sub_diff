@@ -1,8 +1,8 @@
-module SubDiff
+class SubDiff
   # This class is the only object that knows how to construct
   # all of the other private classes in this library.
   #
-  # Used internally by {Buildable} and {CoreExt::String}.
+  # Used internally by {Buildable} and {SubDiff}.
   #
   # @api private
   class Factory

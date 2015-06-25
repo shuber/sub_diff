@@ -1,4 +1,4 @@
-module SubDiff
+class SubDiff
   # Stores a collection of {Diff} objects for all matches from
   # a {String#sub_diff} or {String#gsub_diff} replacement.
   #

@@ -1,4 +1,4 @@
-module SubDiff
+class SubDiff
   module CoreExt
     module String
       # Behaves just like {String#sub} but wraps the returned replacement
@@ -6,7 +6,7 @@ module SubDiff
       #
       # See http://ruby-doc.org/core-2.2.0/String.html#method-i-sub
       def sub_diff(*args, &block)
-        Factory.new(self, :sub).builder.diff(*args, &block)
+        SubDiff.new(self, :sub).diff(*args, &block)
       end
 
       # Behaves just like {String#gsub} but wraps the returned replacement
@@ -14,7 +14,7 @@ module SubDiff
       #
       # See http://ruby-doc.org/core-2.2.0/String.html#method-i-gsub
       def gsub_diff(*args, &block)
-        Factory.new(self, :gsub).builder.diff(*args, &block)
+        SubDiff.new(self, :gsub).diff(*args, &block)
       end
     end
   end

@@ -1,4 +1,4 @@
-module SubDiff
+class SubDiff
   # Processes matches for {String#gsub} replacements
   # by pushing diffs into a {Builder} instance.
   #
