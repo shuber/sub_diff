@@ -18,7 +18,7 @@ module SubDiff
     end
 
     def adapter
-      @adapter ||= Adapter.new(self)
+      @adapter ||= adapter_class.new(self)
     end
 
     def builder
@@ -35,6 +35,16 @@ module SubDiff
 
     def differ
       @differ ||= Differ.new(self)
+    end
+
+    private
+
+    def adapter_class
+      Module.nesting.last.const_get(adapter_name)
+    end
+
+    def adapter_name
+      diff_method.to_s.capitalize
     end
   end
 end

@@ -1,7 +1,6 @@
 require 'delegate'
 require 'forwardable'
 require 'sub_diff/buildable'
-require 'sub_diff/adapter'
 require 'sub_diff/builder'
 require 'sub_diff/collection'
 require 'sub_diff/diff'
