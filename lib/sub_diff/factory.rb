@@ -6,6 +6,10 @@ module SubDiff
   #
   # @api private
   class Factory
+    extend Forwardable
+
+    def_delegator :builder, :diff, :build_diff
+
     attr_reader :string, :diff_method
 
     def initialize(string, diff_method)
