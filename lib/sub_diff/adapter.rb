@@ -13,7 +13,7 @@ module SubDiff
     private
 
     def adapter
-      adapter_class.new(builder)
+      adapter_class.new(factory)
     end
 
     def adapter_class

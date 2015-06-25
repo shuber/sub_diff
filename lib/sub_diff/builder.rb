@@ -6,12 +6,7 @@ module SubDiff
   #
   # @api private
   class Builder
-    attr_reader :string, :diff_method
-
-    def initialize(string, diff_method)
-      @string = string
-      @diff_method = diff_method
-    end
+    include Buildable
 
     def diff(*args, &block)
       build_diff_collection do
@@ -21,7 +16,7 @@ module SubDiff
 
     def push(*args)
       if args.compact.any?
-        diff = Diff.new(*args)
+        diff = factory.diff(*args)
         collection.push(diff)
       end
     end
@@ -31,18 +26,6 @@ module SubDiff
 
     def build_diff_collection(&block)
       collection.reset(&block).dup
-    end
-
-    def collection
-      @collection ||= Collection.new(string)
-    end
-
-    def adapter
-      @adapter ||= Adapter.new(self)
-    end
-
-    def differ
-      @differ ||= Differ.new(self)
     end
   end
 end
