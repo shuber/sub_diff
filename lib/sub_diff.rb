@@ -20,11 +20,12 @@ String.send(:include, SubDiff::CoreExt::String)
 #
 # @api private
 class SubDiff
+  extend Forwardable
+
+  def_delegators :@factory, :builder
+  def_delegators :builder, :diff
+
   def initialize(string, diff_method)
     @factory = Factory.new(string, diff_method)
-  end
-
-  def diff(*args, &block)
-    @factory.builder.diff(*args, &block)
   end
 end
