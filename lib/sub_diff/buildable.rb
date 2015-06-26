@@ -1,22 +1,23 @@
-module SubDiff
-  # This module allows classes to accept a {Builder} object as
+class SubDiff
+  # This module allows classes to accept a {Factory} object as
   # an initializer argument and defines an `attr_reader` for it.
   #
-  # It also delegates commonly used methods to the {Builder} instance.
+  # It also delegates commonly used methods to the {Factory} instance.
   #
-  # Used internally by {Adapter}, {Differ}, and {Sub}.
+  # Used internally by {Builder}, {Differ}, and {Sub}.
   #
   # @api private
   module Buildable
-    attr_reader :builder
+    attr_reader :factory
 
-    def initialize(builder)
-      @builder = builder
+    def initialize(factory)
+      @factory = factory
     end
 
     def self.included(base)
       base.extend(Forwardable)
-      base.def_delegators(:builder, :diff_method, :differ, :string)
+      methods = %i(adapter builder collection differ diff_method string)
+      base.def_delegators(:factory, *methods)
     end
   end
 end

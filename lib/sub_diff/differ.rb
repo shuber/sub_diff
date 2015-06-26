@@ -1,4 +1,4 @@
-module SubDiff
+class SubDiff
   # Performs a {String#sub} or {String#gsub} replacement
   # while yielding each match "diff payload" to a block.
   #

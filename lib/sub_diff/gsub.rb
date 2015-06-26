@@ -1,8 +1,8 @@
-module SubDiff
+class SubDiff
   # Processes matches for {String#gsub} replacements
   # by pushing diffs into a {Builder} instance.
   #
-  # Used internally by {Adapter}.
+  # Used internally by {Factory}.
   #
   # @api private
   class Gsub < Sub

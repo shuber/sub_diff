@@ -1,4 +1,4 @@
-module SubDiff
+class SubDiff
   # Stores a single match (and optional replacement)
   # from a {String#sub} or {String#gsub} replacement.
   #
